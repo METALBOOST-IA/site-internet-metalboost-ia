@@ -30,7 +30,7 @@ const mainServices = [
   {
     icon: Zap,
     title: "Automatisation des processus",
-    description: "Déployez des solutions NoCode pour automatiser vos tâches répétitives et libérer du temps pour la valeur ajoutée.",
+    description: "Déployez des solutions NoCode pour automatiser vos tâches répétitives et vous libérer du temps.",
     features: [
       "Génération automatique de devis",
       "Relances clients automatisées",
