@@ -164,10 +164,7 @@ const Index = () => {
               <h2 className="section-title">
                 Des résultats concrets et mesurables
               </h2>
-              <p className="section-subtitle mb-8">
-                Nous ne vendons pas de la technologie, mais des gains de performance
-                adaptés à votre réalité industrielle.
-              </p>
+              <p className="section-subtitle mb-8">Je ne vends pas de la technologie, mais des gains de performance adaptés à votre réalité industrielle.</p>
               <ul className="space-y-4">
                 {benefits.map((benefit, index) => <li key={index} className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
@@ -193,7 +190,7 @@ const Index = () => {
                     <Users className="h-4 w-4 text-primary" />
                   </div>
                   <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                    <span className="text-sm text-muted-foreground">Découpe laser / plasma</span>
+                    <span className="text-sm text-muted-foreground">Découpe laser / plasma / jet d'eau / poinçonnage /...</span>
                     <Users className="h-4 w-4 text-primary" />
                   </div>
                   <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
@@ -201,7 +198,7 @@ const Index = () => {
                     <Users className="h-4 w-4 text-primary" />
                   </div>
                   <div className="flex justify-between items-center p-3 bg-muted/50 rounded-lg">
-                    <span className="text-sm text-muted-foreground">Pliage / Formage</span>
+                    <span className="text-sm text-muted-foreground">Pliage / Mecano-soudure</span>
                     <Users className="h-4 w-4 text-primary" />
                   </div>
                 </div>
