@@ -205,7 +205,7 @@ const MarketingDigital = () => {
               Une stratégie digitale complète
             </h2>
             <p className="section-subtitle mx-auto">
-              Du référencement à la conversion, nous couvrons l'ensemble
+              Du référencement à la conversion, je couvre l'ensemble
               du parcours d'acquisition de vos prospects.
             </p>
           </div>
