@@ -1,96 +1,51 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
-import {
-  ArrowRight,
-  Search,
-  Wrench,
-  BarChart3,
-  Users,
-  Zap,
-  TrendingUp,
-  Settings,
-  Target,
-  CheckCircle2,
-} from "lucide-react";
-
-const mainServices = [
-  {
-    icon: Search,
-    title: "Audit & Diagnostic IA",
-    description: "Analyse complète de vos processus pour identifier les opportunités d'automatisation et de digitalisation.",
-    features: [
-      "Cartographie des processus actuels",
-      "Identification des tâches automatisables",
-      "Évaluation du potentiel IA",
-      "Recommandations priorisées",
-    ],
-    link: "/ia-automatisation",
-  },
-  {
-    icon: Zap,
-    title: "Automatisation des processus",
-    description: "Déployez des solutions NoCode pour automatiser vos tâches répétitives et vous libérer du temps.",
-    features: [
-      "Génération automatique de devis",
-      "Relances clients automatisées",
-      "Synchronisation ERP / CRM",
-      "Tableaux de bord temps réel",
-    ],
-    link: "/ia-automatisation",
-  },
-  {
-    icon: TrendingUp,
-    title: "Marketing digital industriel",
-    description: "Attirez des leads B2B qualifiés grâce à une stratégie digitale adaptée aux industriels.",
-    features: [
-      "SEO / GEO industriel",
-      "Optimisation de conversion",
-      "Génération de leads qualifiés",
-      "Positionnement marché",
-    ],
-    link: "/marketing-digital",
-  },
-  {
-    icon: Settings,
-    title: "Outils NoCode sur mesure",
-    description: "Développement d'applications métier adaptées à vos besoins sans programmation complexe.",
-    features: [
-      "Configurateurs de produits",
-      "Portails clients",
-      "Applications de suivi",
-      "Intégrations sur mesure",
-    ],
-    link: "/ia-automatisation",
-  },
-];
-
-const accompagnement = [
-  {
-    icon: Target,
-    title: "Diagnostic global",
-    description: "Analyse de votre situation actuelle : processus, outils, présence digitale, performance commerciale.",
-  },
-  {
-    icon: BarChart3,
-    title: "Plan d'actions priorisé",
-    description: "Feuille de route claire avec les actions à plus fort impact et le meilleur retour sur investissement.",
-  },
-  {
-    icon: Wrench,
-    title: "Déploiement progressif",
-    description: "Mise en place par étapes, formation des équipes, accompagnement au changement.",
-  },
-  {
-    icon: Users,
-    title: "Suivi des résultats",
-    description: "Mesure des gains, ajustements continus, accompagnement sur la durée.",
-  },
-];
-
+import { ArrowRight, Search, Wrench, BarChart3, Users, Zap, TrendingUp, Settings, Target, CheckCircle2 } from "lucide-react";
+const mainServices = [{
+  icon: Search,
+  title: "Audit & Diagnostic IA",
+  description: "Analyse complète de vos processus pour identifier les opportunités d'automatisation et de digitalisation.",
+  features: ["Cartographie des processus actuels", "Identification des tâches automatisables", "Évaluation du potentiel IA", "Recommandations priorisées"],
+  link: "/ia-automatisation"
+}, {
+  icon: Zap,
+  title: "Automatisation des processus",
+  description: "Déployez des solutions NoCode pour automatiser vos tâches répétitives et vous libérer du temps.",
+  features: ["Génération automatique de devis", "Relances clients automatisées", "Synchronisation ERP / CRM", "Tableaux de bord temps réel"],
+  link: "/ia-automatisation"
+}, {
+  icon: TrendingUp,
+  title: "Marketing digital industriel",
+  description: "Attirez des leads B2B qualifiés grâce à une stratégie digitale adaptée aux industriels.",
+  features: ["SEO / GEO industriel", "Optimisation de conversion", "Génération de leads qualifiés", "Positionnement marché"],
+  link: "/marketing-digital"
+}, {
+  icon: Settings,
+  title: "Outils NoCode sur mesure",
+  description: "Développement d'applications métier adaptées à vos besoins sans programmation complexe.",
+  features: ["Configurateurs de produits", "Portails clients", "Applications de suivi", "Intégrations sur mesure"],
+  link: "/ia-automatisation"
+}];
+const accompagnement = [{
+  icon: Target,
+  title: "Diagnostic global",
+  description: "Analyse de votre situation actuelle : processus, outils, présence digitale, performance commerciale."
+}, {
+  icon: BarChart3,
+  title: "Plan d'actions priorisé",
+  description: "Feuille de route claire avec les actions à plus fort impact et le meilleur retour sur investissement."
+}, {
+  icon: Wrench,
+  title: "Déploiement progressif",
+  description: "Mise en place par étapes, formation des équipes, accompagnement au changement."
+}, {
+  icon: Users,
+  title: "Suivi des résultats",
+  description: "Mesure des gains, ajustements continus, accompagnement sur la durée."
+}];
 const Offres = () => {
-  return (
-    <Layout>
+  return <Layout>
       {/* Hero */}
       <section className="py-16 lg:py-24 bg-primary">
         <div className="container-industrial">
@@ -120,8 +75,7 @@ const Offres = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {mainServices.map((service, index) => (
-              <div key={index} className="card-industrial">
+            {mainServices.map((service, index) => <div key={index} className="card-industrial">
                 <div className="flex items-start gap-4 mb-6">
                   <div className="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <service.icon className="h-7 w-7 text-primary" />
@@ -134,22 +88,16 @@ const Offres = () => {
                   </div>
                 </div>
                 <ul className="space-y-3 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-3">
+                  {service.features.map((feature, idx) => <li key={idx} className="flex items-center gap-3">
                       <CheckCircle2 className="h-4 w-4 text-secondary flex-shrink-0" />
                       <span className="text-sm text-foreground">{feature}</span>
-                    </li>
-                  ))}
+                    </li>)}
                 </ul>
-                <Link
-                  to={service.link}
-                  className="inline-flex items-center text-secondary font-medium hover:gap-2 transition-all"
-                >
+                <Link to={service.link} className="inline-flex items-center text-secondary font-medium hover:gap-2 transition-all">
                   En savoir plus
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -160,15 +108,11 @@ const Offres = () => {
           <div className="text-center mb-12">
             <span className="badge-industrial mb-4">Notre approche</span>
             <h2 className="section-title">Un accompagnement complet</h2>
-            <p className="section-subtitle mx-auto">
-              Du diagnostic initial au suivi des résultats, nous vous accompagnons
-              à chaque étape de votre transformation.
-            </p>
+            <p className="section-subtitle mx-auto">Du diagnostic initial au suivi des résultats, je vous accompagne à chaque étape de votre transformation.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {accompagnement.map((item, index) => (
-              <div key={index} className="relative">
+            {accompagnement.map((item, index) => <div key={index} className="relative">
                 <div className="card-industrial text-center h-full">
                   <div className="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mx-auto mb-4">
                     <span className="text-lg font-bold text-secondary">{index + 1}</span>
@@ -181,13 +125,10 @@ const Offres = () => {
                   </h3>
                   <p className="text-sm text-muted-foreground">{item.description}</p>
                 </div>
-                {index < accompagnement.length - 1 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2">
+                {index < accompagnement.length - 1 && <div className="hidden lg:block absolute top-1/2 -right-3 transform -translate-y-1/2">
                     <ArrowRight className="h-5 w-5 text-border" />
-                  </div>
-                )}
-              </div>
-            ))}
+                  </div>}
+              </div>)}
           </div>
         </div>
       </section>
@@ -212,8 +153,6 @@ const Offres = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Offres;
