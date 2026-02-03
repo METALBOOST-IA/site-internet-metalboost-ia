@@ -60,7 +60,7 @@ const benefits = [
   {
     icon: Clock,
     title: "Gain de temps",
-    description: "Libérez vos équipes des tâches répétitives pour se concentrer sur la valeur ajoutée.",
+    description: "Libérez vos équipes des tâches répétitives pour se concentrer sur celles à fortes valeurs ajoutées.",
   },
   {
     icon: AlertTriangle,
@@ -141,7 +141,7 @@ const IaAutomatisation = () => {
             <span className="badge-industrial mb-4">Cas d'usage concrets</span>
             <h2 className="section-title">Avant / Après : ce qui change</h2>
             <p className="section-subtitle mx-auto">
-              Des exemples réels d'automatisation dans l'industrie de la transformation des métaux.
+              Des exemples réels d'automatisation pour votre entreprise.
             </p>
           </div>
 
@@ -232,7 +232,7 @@ const IaAutomatisation = () => {
                   </div>
                 </div>
                 <div className="grid grid-cols-2 gap-4">
-                  {["Make / n8n", "Airtable", "ChatGPT API", "Zapier", "Power Automate", "Google Sheets"].map((tool, idx) => (
+                  {["Make / n8n", "Airtable / Baserow", "ChatGPT / Gemini / Mistral", "Notion / NoteBook LM", "Lovable / Bolt", "Google Sheets / Excel"].map((tool, idx) => (
                     <div key={idx} className="p-3 bg-muted/50 rounded-lg text-sm text-center">
                       {tool}
                     </div>
