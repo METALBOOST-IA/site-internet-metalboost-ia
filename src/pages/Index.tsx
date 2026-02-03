@@ -1,92 +1,59 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
-import {
-  ArrowRight,
-  Target,
-  Zap,
-  TrendingUp,
-  Clock,
-  Shield,
-  CheckCircle2,
-  Factory,
-  Cog,
-  BarChart3,
-  Users,
-} from "lucide-react";
+import { ArrowRight, Target, Zap, TrendingUp, Clock, Shield, CheckCircle2, Factory, Cog, BarChart3, Users } from "lucide-react";
 import heroImage from "@/assets/hero-workshop.jpg";
-
-const stats = [
-  { value: "30%", label: "Réduction du temps de chiffrage" },
-  { value: "2x", label: "Plus de leads qualifiés" },
-  { value: "50%", label: "Moins de tâches manuelles répétitives" },
-];
-
-const problems = [
-  {
-    icon: Clock,
-    title: "Temps perdu sur les tâches répétitives",
-    description: "Devis, relances, planning… vos équipes passent plus de temps à administrer qu'à produire.",
-  },
-  {
-    icon: Target,
-    title: "Difficultés à capter de nouveaux clients",
-    description: "Votre site web ne génère pas de demandes ? Vos commerciaux manquent de leads qualifiés ?",
-  },
-  {
-    icon: Cog,
-    title: "Outils dispersés et non connectés",
-    description: "ERP, Excel, mails… les informations circulent mal et créent des erreurs.",
-  },
-  {
-    icon: BarChart3,
-    title: "Manque de visibilité sur la performance",
-    description: "Difficile de piloter sans tableaux de bord clairs et actualisés.",
-  },
-];
-
-const services = [
-  {
-    icon: Zap,
-    title: "IA & Automatisation",
-    description: "Automatisez vos processus internes : devis, relances, planning, reporting. Gagnez du temps, réduisez les erreurs.",
-    href: "/ia-automatisation",
-  },
-  {
-    icon: TrendingUp,
-    title: "Marketing Digital Industriel",
-    description: "Générez des leads B2B qualifiés. SEO industriel, positionnement, conversion de prospects en clients.",
-    href: "/marketing-digital",
-  },
-  {
-    icon: Shield,
-    title: "Accompagnement sur mesure",
-    description: "Diagnostic complet, plan d'actions priorisé, déploiement progressif et mesure des résultats.",
-    href: "/methodologie",
-  },
-];
-
-const benefits = [
-  "Gains de temps mesurables dès les premières semaines",
-  "Réduction des erreurs et des ressaisies",
-  "Meilleure réactivité commerciale",
-  "Visibilité accrue auprès de vos prospects",
-  "Outils simples, adaptés à votre métier",
-  "ROI quantifiable et suivi dans le temps",
-];
-
+const stats = [{
+  value: "30%",
+  label: "Réduction du temps de chiffrage"
+}, {
+  value: "2x",
+  label: "Plus de leads qualifiés"
+}, {
+  value: "50%",
+  label: "Moins de tâches manuelles répétitives"
+}];
+const problems = [{
+  icon: Clock,
+  title: "Temps perdu sur les tâches répétitives",
+  description: "Devis, relances, planning… vos équipes passent plus de temps à administrer qu'à produire."
+}, {
+  icon: Target,
+  title: "Difficultés à capter de nouveaux clients",
+  description: "Votre site web ne génère pas de demandes ? Vos commerciaux manquent de leads qualifiés ?"
+}, {
+  icon: Cog,
+  title: "Outils dispersés et non connectés",
+  description: "ERP, Excel, mails… les informations circulent mal et créent des erreurs."
+}, {
+  icon: BarChart3,
+  title: "Manque de visibilité sur la performance",
+  description: "Difficile de piloter sans tableaux de bord clairs et actualisés."
+}];
+const services = [{
+  icon: Zap,
+  title: "IA & Automatisation",
+  description: "Automatisez vos processus internes : devis, relances, planning, reporting. Gagnez du temps, réduisez les erreurs.",
+  href: "/ia-automatisation"
+}, {
+  icon: TrendingUp,
+  title: "Marketing Digital Industriel",
+  description: "Générez des leads B2B qualifiés. SEO industriel, positionnement, conversion de prospects en clients.",
+  href: "/marketing-digital"
+}, {
+  icon: Shield,
+  title: "Accompagnement sur mesure",
+  description: "Diagnostic complet, plan d'actions priorisé, déploiement progressif et mesure des résultats.",
+  href: "/methodologie"
+}];
+const benefits = ["Gains de temps mesurables dès les premières semaines", "Réduction des erreurs et des ressaisies", "Meilleure réactivité commerciale", "Visibilité accrue auprès de vos prospects", "Outils simples, adaptés à votre métier", "ROI quantifiable et suivi dans le temps"];
 const Index = () => {
-  return (
-    <Layout>
+  return <Layout>
       {/* Hero Section */}
       <section className="relative min-h-[85vh] flex items-center overflow-hidden">
         {/* Background image */}
         <div className="absolute inset-0">
-          <img
-            src={heroImage}
-            alt="Atelier industriel connecté"
-            className="w-full h-full object-cover"
-          />
+          <img src={heroImage} alt="Atelier industriel connecté" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent" />
         </div>
 
@@ -99,10 +66,7 @@ const Index = () => {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-primary-foreground leading-tight mb-6">
               Un consultant IA & NoCode qui parle le langage de l'atelier
             </h1>
-            <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 leading-relaxed">
-              Optimisez vos processus, générez plus de leads et gagnez en performance.
-              Des solutions concrètes pour les industriels de la transformation des métaux.
-            </p>
+            <p className="text-lg md:text-xl text-primary-foreground/80 mb-8 leading-relaxed">Fort de 28 ans d’expérience dans la transformation des métaux, j’accompagne aujourd’hui les industriels dans l’optimisation de leurs processus, l’automatisation de leurs tâches et la génération de nouveaux clients grâce à des solutions concrètes et personnalisées.</p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="hero" size="xl" asChild>
                 <Link to="/contact">
@@ -122,14 +86,12 @@ const Index = () => {
       <section className="bg-primary py-8">
         <div className="container-industrial">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
+            {stats.map((stat, index) => <div key={index} className="text-center">
                 <div className="text-4xl md:text-5xl font-bold text-secondary mb-2">
                   {stat.value}
                 </div>
                 <div className="text-primary-foreground/80">{stat.label}</div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -142,15 +104,11 @@ const Index = () => {
             <h2 className="section-title">
               Ces problématiques vous parlent ?
             </h2>
-            <p className="section-subtitle mx-auto">
-              Les industriels de la transformation des métaux font face à des défis communs.
-              Nous les connaissons et nous avons les solutions.
-            </p>
+            <p className="section-subtitle mx-auto">Les industriels de la transformation des métaux font face à des défis communs. Je les connais et j'apporte les solutions.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            {problems.map((problem, index) => (
-              <div key={index} className="card-industrial flex gap-4">
+            {problems.map((problem, index) => <div key={index} className="card-industrial flex gap-4">
                 <div className="flex-shrink-0">
                   <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
                     <problem.icon className="h-6 w-6 text-primary" />
@@ -162,8 +120,7 @@ const Index = () => {
                   </h3>
                   <p className="text-muted-foreground">{problem.description}</p>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -173,9 +130,7 @@ const Index = () => {
         <div className="container-industrial">
           <div className="text-center mb-12">
             <span className="badge-industrial mb-4">Nos solutions</span>
-            <h2 className="section-title">
-              Comment nous pouvons vous aider
-            </h2>
+            <h2 className="section-title">Comment je peux vous aider</h2>
             <p className="section-subtitle mx-auto">
               Une approche pragmatique combinant optimisation des processus internes
               et performance commerciale.
@@ -183,12 +138,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-            {services.map((service, index) => (
-              <Link
-                key={index}
-                to={service.href}
-                className="card-industrial group hover:-translate-y-1"
-              >
+            {services.map((service, index) => <Link key={index} to={service.href} className="card-industrial group hover:-translate-y-1">
                 <div className="w-14 h-14 rounded-xl bg-secondary/10 flex items-center justify-center mb-6 group-hover:bg-secondary/20 transition-colors">
                   <service.icon className="h-7 w-7 text-secondary" />
                 </div>
@@ -200,8 +150,7 @@ const Index = () => {
                   En savoir plus
                   <ArrowRight className="ml-1 h-4 w-4" />
                 </span>
-              </Link>
-            ))}
+              </Link>)}
           </div>
         </div>
       </section>
@@ -220,12 +169,10 @@ const Index = () => {
                 adaptés à votre réalité industrielle.
               </p>
               <ul className="space-y-4">
-                {benefits.map((benefit, index) => (
-                  <li key={index} className="flex items-start gap-3">
+                {benefits.map((benefit, index) => <li key={index} className="flex items-start gap-3">
                     <CheckCircle2 className="h-5 w-5 text-secondary flex-shrink-0 mt-0.5" />
                     <span className="text-foreground">{benefit}</span>
-                  </li>
-                ))}
+                  </li>)}
               </ul>
             </div>
             <div className="relative">
@@ -282,8 +229,6 @@ const Index = () => {
           </Button>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default Index;
