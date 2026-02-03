@@ -1,8 +1,6 @@
 import Layout from "@/components/Layout";
-
 const MentionsLegales = () => {
-  return (
-    <Layout>
+  return <Layout>
       {/* Hero */}
       <section className="bg-primary py-16 lg:py-20">
         <div className="container-industrial">
@@ -44,9 +42,9 @@ const MentionsLegales = () => {
                 Hébergement
               </h2>
               <div className="bg-muted/30 rounded-lg p-6 space-y-2">
-                <p className="text-foreground"><strong>Hébergeur :</strong> [Nom de l'hébergeur]</p>
-                <p className="text-foreground"><strong>Adresse :</strong> [Adresse de l'hébergeur]</p>
-                <p className="text-foreground"><strong>Téléphone :</strong> [Téléphone de l'hébergeur]</p>
+                <p className="text-foreground"><strong>Hébergeur :</strong>Hébergeur : LIGNES WEB SERVICES</p>
+                <p className="text-foreground"><strong>Adresse :</strong>Adresse : 10, rue de Penthievre - 75008 PARIS</p>
+                <p className="text-foreground"><strong>Téléphone :</strong>Téléphone : 08 92 70 04 79</p>
               </div>
             </div>
 
@@ -141,8 +139,6 @@ const MentionsLegales = () => {
           </div>
         </div>
       </section>
-    </Layout>
-  );
+    </Layout>;
 };
-
 export default MentionsLegales;
