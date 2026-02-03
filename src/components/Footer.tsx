@@ -91,7 +91,7 @@ const Footer = () => {
                 </div>
               </li>
               <li>
-                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">
+                <a href="https://www.linkedin.com/in/gregoryrota/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm">
                   <Linkedin className="h-4 w-4" />
                   <span>LinkedIn</span>
                 </a>
