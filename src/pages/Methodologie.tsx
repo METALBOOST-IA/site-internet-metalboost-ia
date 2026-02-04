@@ -31,7 +31,7 @@ const steps = [{
   icon: BarChart3,
   title: "Mesure et optimisation",
   duration: "Suivi continu",
-  description: "Je mesure les résultats et optimisons en continu pour maximiser la valeur générée.",
+  description: "Je mesure les résultats et optimise en continu pour maximiser la valeur générée.",
   details: ["Suivi des KPIs définis", "Reporting régulier et transparent", "Identification des axes d'amélioration", "Ajustements basés sur les retours terrain", "Accompagnement sur la durée"],
   deliverable: "Tableaux de bord, rapports d'avancement, recommandations d'optimisation"
 }];
