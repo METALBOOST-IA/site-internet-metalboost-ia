@@ -72,7 +72,7 @@ const Contact = () => {
 
     toast({
       title: "Message envoyé !",
-      description: "Nous vous recontacterons dans les plus brefs délais.",
+      description: "Je vous recontacte dans les plus brefs délais.",
     });
 
     setFormData({
@@ -101,7 +101,7 @@ const Contact = () => {
             </h1>
             <p className="text-lg text-primary-foreground/80 leading-relaxed">
               Vous avez des questions ? Vous souhaitez un diagnostic de votre situation ?
-              Prenez rendez-vous ou envoyez-nous un message.
+              Prenez rendez-vous ou envoyez-moi un message.
             </p>
           </div>
         </div>
@@ -119,14 +119,14 @@ const Contact = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="name">Nom *</Label>
+                    <Label htmlFor="name">Nom/Prénom *</Label>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      placeholder="Votre nom"
+                      placeholder="Votre nom/prénom"
                     />
                   </div>
                   <div className="space-y-2">
@@ -144,12 +144,13 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="function">Fonction</Label>
+                    <Label htmlFor="function">Fonction *</Label>
                     <Input
                       id="function"
                       name="function"
                       value={formData.function}
                       onChange={handleChange}
+                      required
                       placeholder="Votre fonction"
                     />
                   </div>
@@ -169,13 +170,14 @@ const Contact = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="phone">Téléphone</Label>
+                    <Label htmlFor="phone">Téléphone *</Label>
                     <Input
                       id="phone"
                       name="phone"
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
+                      required
                       placeholder="06 00 00 00 00"
                     />
                   </div>
@@ -282,7 +284,7 @@ const Contact = () => {
                 <ul className="space-y-4">
                   <li>
                     <a
-                      href="tel:+33600000000"
+                      href="tel:+33658934607"
                       className="flex items-start gap-4 text-foreground hover:text-primary transition-colors"
                     >
                       <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
@@ -290,7 +292,7 @@ const Contact = () => {
                       </div>
                       <div>
                         <div className="text-sm text-muted-foreground">Téléphone</div>
-                        <div className="font-medium">06 00 00 00 00</div>
+                        <div className="font-medium">06 58 93 46 07</div>
                       </div>
                     </a>
                   </li>
@@ -319,7 +321,7 @@ const Contact = () => {
                   </li>
                   <li>
                     <a
-                      href="https://www.linkedin.com/"
+                      href="https://www.linkedin.com/in/gregoryrota/"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-start gap-4 text-foreground hover:text-primary transition-colors"
