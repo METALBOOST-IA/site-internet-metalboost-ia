@@ -61,7 +61,7 @@ const Header = () => {
           {/* CTA Button */}
           <div className="hidden md:flex items-center gap-4">
             <Button variant="hero" size="lg" asChild>
-              <Link to="/contact">Prendre rendez-vous</Link>
+              <Link to="/contact">Contactez-moi</Link>
             </Button>
           </div>
 
@@ -80,7 +80,7 @@ const Header = () => {
               <div className="mt-4 pt-4 border-t border-primary-foreground/10">
                 <Button variant="hero" size="lg" className="w-full" asChild>
                   <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-                    Prendre rendez-vous
+                    Contactez-moi
                   </Link>
                 </Button>
               </div>
