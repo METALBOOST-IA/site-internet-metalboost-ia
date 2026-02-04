@@ -14,14 +14,14 @@ import consultantImage from "@/assets/consultant-about.jpg";
 
 const parcours = [
   {
-    period: "15+ ans",
-    title: "Expérience industrielle",
-    description: "Direction commerciale et développement dans l'industrie de la transformation des métaux.",
+    period: "28+ ans",
+    title: "Expérience industrielle et logicielle CFAO",
+    description: "Direction commerciale et développement au service de l'industrie de la transformation des métaux.",
   },
   {
     period: "Terrain",
     title: "Connaissance métier",
-    description: "Des années passées en atelier, au contact des équipes de production, des méthodes et du commerce.",
+    description: "Des années passées à cotoyer des ateliers, au contact des équipes de production, des méthodes, des BE et du commerce.",
   },
   {
     period: "Digital",
@@ -58,8 +58,9 @@ const expertise = [
   "Chaudronnerie",
   "Découpe laser, plasma, jet d'eau",
   "Pliage et formage",
-  "Sous-traitance industrielle",
+  "Poinçonnage-grignotage",
   "Mécano-soudure",
+  "Sous-traitance industrielle",
 ];
 
 const APropos = () => {
@@ -77,7 +78,7 @@ const APropos = () => {
             </h1>
             <p className="text-lg text-primary-foreground/80 leading-relaxed">
               Issu du monde industriel, je combine expertise terrain et maîtrise
-              des outils digitaux pour accompagner les PME de la transformation des métaux.
+              des outils digitaux pour accompagner les PME de la transformation des métaux (Sous-traitant découpe, Tôlerie, Chaudronnerie, Mécano-soudure).
             </p>
           </div>
         </div>
@@ -97,14 +98,13 @@ const APropos = () => {
             <div>
               <h2 className="section-title mb-6">Mon parcours</h2>
               <p className="text-muted-foreground mb-6">
-                Après plus de 15 ans dans l'industrie de la transformation des métaux –
-                de la production au développement commercial – j'ai créé METALBOOST IA
-                pour aider les PME industrielles à tirer parti de l'IA et du digital.
+                Après plus de 28 ans dans l'industrie de la transformation des métaux (Sous-traitant découpe, Tôlerie, Chaudronnerie, Mécano-soudure) –
+                à proposer des logiciels pour optimiser la production, ou à vendre des pièces métalliques – j'ai créé METALBOOST IA
+                pour aider les TPE et PME industrielles à tirer parti de l'IA et du digital.
               </p>
               <p className="text-muted-foreground mb-8">
-                Je connais vos enjeux de l'intérieur : la pression sur les délais,
-                les marges serrées, les difficultés de recrutement, la nécessité
-                de se différencier. C'est cette compréhension terrain qui guide
+                Je connais vos difficultés et enjeux de l'intérieur : la pression sur les délais,
+                les marges serrées, les difficultés de recrutement, et une concurrence acharnée. C'est cette compréhension terrain qui guide
                 mes recommandations.
               </p>
               <div className="space-y-4">
@@ -154,7 +154,7 @@ const APropos = () => {
               <h3 className="text-xl font-semibold text-primary mb-6">Ma vision</h3>
               <div className="space-y-4 text-muted-foreground">
                 <p>
-                  L'industrie française a un potentiel énorme. Mais trop de PME
+                  L'industrie française a un potentiel énorme. Mais trop de TPE/PME
                   restent à l'écart de la transformation digitale, faute de temps,
                   de compétences ou d'interlocuteurs qui comprennent leur métier.
                 </p>
@@ -204,7 +204,7 @@ const APropos = () => {
             Travaillons ensemble
           </h2>
           <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
-            Vous avez un projet de transformation digitale ? Vous souhaitez explorer
+            Vous avez un projet de transformation digitale ou d'automatisation ? Vous souhaitez explorer
             les possibilités de l'IA pour votre entreprise ? Échangeons.
           </p>
           <Button variant="hero" size="xl" asChild>
