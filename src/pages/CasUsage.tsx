@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import {
@@ -88,6 +89,18 @@ const caseStudies = [
 ];
 
 const CasUsage = () => {
+  useEffect(() => {
+    // Add noindex meta tag for SEO
+    const metaRobots = document.createElement('meta');
+    metaRobots.name = 'robots';
+    metaRobots.content = 'noindex, nofollow';
+    document.head.appendChild(metaRobots);
+
+    return () => {
+      document.head.removeChild(metaRobots);
+    };
+  }, []);
+
   return (
     <Layout>
       {/* Hero */}

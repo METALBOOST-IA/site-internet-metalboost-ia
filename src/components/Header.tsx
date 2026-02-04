@@ -19,9 +19,6 @@ const navigation = [{
   name: "Méthodologie",
   href: "/methodologie"
 }, {
-  name: "Cas d'usage",
-  href: "/cas-usage"
-}, {
   name: "À propos",
   href: "/a-propos"
 }];
