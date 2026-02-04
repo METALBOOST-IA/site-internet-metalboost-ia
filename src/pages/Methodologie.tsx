@@ -7,7 +7,7 @@ const steps = [{
   icon: Search,
   title: "Diagnostic global",
   duration: "1 à 2 semaines",
-  description: "Nous analysons votre situation actuelle pour comprendre vos enjeux et identifier les opportunités.",
+  description: "J'analyse votre situation actuelle pour comprendre vos enjeux et identifier les opportunités.",
   details: ["Entretiens avec les équipes clés (direction, production, commercial, ADV)", "Analyse des processus actuels et des outils utilisés", "Audit de votre présence digitale et positionnement marché", "Identification des points de friction et des gisements de valeur", "Benchmark des pratiques sectorielles"],
   deliverable: "Rapport de diagnostic avec cartographie des processus et opportunités identifiées"
 }, {
@@ -23,7 +23,7 @@ const steps = [{
   icon: Wrench,
   title: "Déploiement progressif",
   duration: "Variable selon le projet",
-  description: "Nous mettons en œuvre les solutions par étapes, en commençant par les gains rapides.",
+  description: "je mets en œuvre les solutions par étapes, en commençant par les gains rapides.",
   details: ["Mise en place des automatisations et outils", "Formation des équipes concernées", "Accompagnement au changement", "Tests et ajustements en conditions réelles", "Documentation des processus"],
   deliverable: "Solutions opérationnelles, équipes formées, documentation complète"
 }, {
@@ -31,18 +31,18 @@ const steps = [{
   icon: BarChart3,
   title: "Mesure et optimisation",
   duration: "Suivi continu",
-  description: "Nous mesurons les résultats et optimisons en continu pour maximiser la valeur générée.",
+  description: "Je mesure les résultats et optimisons en continu pour maximiser la valeur générée.",
   details: ["Suivi des KPIs définis", "Reporting régulier et transparent", "Identification des axes d'amélioration", "Ajustements basés sur les retours terrain", "Accompagnement sur la durée"],
   deliverable: "Tableaux de bord, rapports d'avancement, recommandations d'optimisation"
 }];
 const principles = [{
   icon: Lightbulb,
   title: "Pragmatisme",
-  description: "Nous ne proposons que des solutions qui apportent un gain mesurable et s'intègrent à votre réalité."
+  description: "Je ne propose que des solutions qui apportent un gain mesurable et s'intègrent à votre réalité."
 }, {
   icon: Clock,
   title: "Quick wins d'abord",
-  description: "Nous commençons par les actions à fort impact et effort raisonnable pour des résultats rapides."
+  description: "Je commençe par les actions à fort impact et effort raisonnable pour des résultats rapides."
 }, {
   icon: Users,
   title: "Co-construction",
@@ -50,7 +50,7 @@ const principles = [{
 }, {
   icon: Rocket,
   title: "Autonomie",
-  description: "Notre objectif : vous rendre autonomes. Formation, documentation, transfert de compétences."
+  description: "Mon objectif : vous rendre autonomes. Formation, documentation, transfert de compétences."
 }];
 const Methodologie = () => {
   return <Layout>
