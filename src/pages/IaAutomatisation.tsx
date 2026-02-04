@@ -19,17 +19,24 @@ import {
 import automationImage from "@/assets/automation-industrial.jpg";
 
 const useCases = [
+ {
+    icon: Mail,
+    title: "Traitement automatique des mails",
+    before: "Entre 2-3h/jour à trier/labelliser/répondre, boite mail surchargée, erreurs destinataires, retards dans les réponses",
+    after: "Mails classés automatiquement par thèmes, réponses instantanées, intervention humaine uniquement sur exceptions",
+    gain: "10 à 12h de temps économisé par semaine",
+  },
   {
     icon: FileText,
     title: "Génération automatique de devis",
     before: "2h par devis complexe, ressaisies multiples, erreurs fréquentes",
     after: "Devis généré en 10 min, données pré-remplies, calculs automatiques",
-    gain: "70% de temps gagné sur le chiffrage",
+    gain: "50% de temps gagné sur le chiffrage",
   },
   {
     icon: Mail,
-    title: "Relances clients automatisées",
-    before: "Relances manuelles oubliées, suivi dispersé dans les mails",
+    title: "Relances devis automatisées",
+    before: "Relances manuelles oubliées, peu de suivi des devis, devis perdus importants",
     after: "Séquences de relance automatiques, suivi centralisé, alertes intelligentes",
     gain: "30% de taux de conversion en plus",
   },
@@ -50,7 +57,7 @@ const useCases = [
   {
     icon: RefreshCw,
     title: "Synchronisation des outils",
-    before: "ERP, CRM, Excel non connectés, double saisie",
+    before: "ERP, CRM, Excel, CFAO, non connectés, double ou triple saisie",
     after: "Flux de données automatisés, source unique de vérité",
     gain: "Fin des ressaisies et des erreurs",
   },
