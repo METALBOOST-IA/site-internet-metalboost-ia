@@ -258,21 +258,16 @@ const Contact = () => {
                     </li>
                   ))}
                 </ul>
-                {/* Koalendar embed placeholder */}
-                <div className="bg-muted/50 rounded-lg p-6 text-center border border-dashed border-border">
-                  <Clock className="h-8 w-8 text-muted-foreground mx-auto mb-3" />
-                  <p className="text-sm text-muted-foreground mb-4">
-                    Intégration Koalendar
-                  </p>
-                  <Button variant="cta" size="lg" asChild>
-                    <a
-                      href="https://koalendar.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Réserver un créneau
-                    </a>
-                  </Button>
+                {/* Koalendar embed */}
+                <div className="rounded-lg overflow-hidden border border-border">
+                  <iframe
+                    src="https://koalendar.com/e/gregory-rota?embed=true"
+                    width="100%"
+                    height="500"
+                    frameBorder="0"
+                    className="bg-background"
+                    title="Réserver un rendez-vous avec Gregory Rota"
+                  />
                 </div>
               </div>
 
