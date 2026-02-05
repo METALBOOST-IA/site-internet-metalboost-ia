@@ -208,6 +208,39 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Osez l'IA Section */}
+      <section className="py-16 lg:py-24 section-alt">
+        <div className="container-industrial">
+          <div className="max-w-4xl mx-auto text-center">
+            <span className="badge-industrial mb-4">Financement & Accompagnement</span>
+            <h2 className="section-title">
+              Osez l'IA : un dispositif pour accélérer votre transformation
+            </h2>
+            <p className="section-subtitle mx-auto mb-6">
+              Le gouvernement français a lancé le programme <strong>"Osez l'IA"</strong> pour aider 
+              les TPE, PME et ETI à intégrer l'intelligence artificielle dans leurs activités. 
+              Ce dispositif offre un accompagnement personnalisé et des aides financières 
+              pour faciliter votre transition vers des outils plus performants.
+            </p>
+            <p className="text-muted-foreground mb-8 max-w-3xl mx-auto">
+              En tant que consultant spécialisé dans l'industrie, je peux vous accompagner 
+              dans vos démarches pour bénéficier de ce programme et maximiser vos chances 
+              de réussite dans l'intégration de l'IA au sein de votre entreprise.
+            </p>
+            <Button variant="cta" size="lg" asChild>
+              <a 
+                href="https://www.economie.gouv.fr/actualites/osez-lia-un-plan-pour-diffuser-lia-dans-toutes-les-entreprises#" 
+                target="_blank" 
+                rel="noopener noreferrer"
+              >
+                Découvrir le dispositif Osez l'IA
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-16 lg:py-24 bg-primary">
         <div className="container-industrial text-center">
