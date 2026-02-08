@@ -42,7 +42,7 @@ const principles = [{
 }, {
   icon: Clock,
   title: "Quick wins d'abord",
-  description: "Je commençe par les actions à fort impact et effort raisonnable pour des résultats rapides."
+  description: "Je commence par les actions à fort impact et effort raisonnable pour des résultats rapides."
 }, {
   icon: Users,
   title: "Co-construction",
