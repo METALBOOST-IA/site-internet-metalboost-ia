@@ -43,6 +43,7 @@ const PolitiqueConfidentialite = () => {
               </h2>
               <div className="bg-muted/30 rounded-lg p-6 space-y-2">
                 <p className="text-foreground"><strong>Raison sociale :</strong> METALBOOST IA Consulting affilié à la couveuse d'entreprise AUXIME SAS</p>
+                <p className="text-foreground"><strong>Responsable de la publication :</strong> Gregory Rota</p>
                 <p className="text-foreground"><strong>Adresse :</strong> 9 Quai Jean Moulin, 69001 Lyon</p>
                 <p className="text-foreground"><strong>Email :</strong> contact@metalboost-ia.fr</p>
                 <p className="text-foreground"><strong>Téléphone :</strong> 06 58 93 46 07</p>
