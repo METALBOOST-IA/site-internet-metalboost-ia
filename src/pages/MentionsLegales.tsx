@@ -24,13 +24,12 @@ const MentionsLegales = () => {
                 Éditeur du site
               </h2>
               <div className="bg-muted/30 rounded-lg p-6 space-y-2">
-                <p className="text-foreground"><strong>Raison sociale :</strong> METALBOOST IA Consulting</p>
-                <p className="text-foreground"><strong>Forme juridique :</strong> [À compléter]</p>
-                <p className="text-foreground"><strong>Capital social :</strong> [À compléter]</p>
-                <p className="text-foreground"><strong>Siège social :</strong> [Adresse à compléter]</p>
-                <p className="text-foreground"><strong>SIRET :</strong> [À compléter]</p>
-                <p className="text-foreground"><strong>Numéro TVA intracommunautaire :</strong> [À compléter]</p>
-                <p className="text-foreground"><strong>Directeur de la publication :</strong> Gregory Rota</p>
+                <p className="text-foreground"><strong>Raison sociale :</strong> METALBOOST IA Consulting affilié à la couveuse d'entreprise AUXIME SAS</p>
+                <p className="text-foreground"><strong>Forme juridique :</strong> En contrat CAPE jusqu'au 30/11/2026</p>
+                <p className="text-foreground"><strong>Siège social :</strong> 9 Quai Jean Moulin, 69001 Lyon</p>
+                <p className="text-foreground"><strong>SIRET :</strong> 404 328 510 00023</p>
+                <p className="text-foreground"><strong>Numéro TVA intracommunautaire :</strong> FR57 404 328 510</p>
+                <p className="text-foreground"><strong>Responsable de la publication :</strong> Gregory Rota</p>
                 <p className="text-foreground"><strong>Email :</strong> contact@metalboost-ia.fr</p>
                 <p className="text-foreground"><strong>Téléphone :</strong> 06 58 93 46 07</p>
               </div>
