@@ -10,7 +10,7 @@ import {
   CheckCircle2,
   Lightbulb,
 } from "lucide-react";
-import consultantImage from "@/assets/consultant-about.jpg";
+import consultantImage from "@/assets/consultant-about.png";
 
 const parcours = [
   {
