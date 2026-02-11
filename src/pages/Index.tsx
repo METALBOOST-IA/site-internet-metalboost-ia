@@ -58,7 +58,7 @@ const Index = () => {
         </div>
 
         {/* Content */}
-        <div className="relative container-industrial py-20">
+        <div className="relative w-full container-industrial py-20">
           <div className="max-w-2xl stagger-children">
             <span className="badge-industrial bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 mb-6">
               Conseil IA & NoCode pour l'industrie
