@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.metalboost-ia.fr/public/sitemap.xml
+Sitemap: https://www.metalboost-ia.fr/sitemap.xml
