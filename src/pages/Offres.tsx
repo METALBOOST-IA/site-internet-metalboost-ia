@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { ArrowRight, Search, Wrench, BarChart3, Users, Zap, TrendingUp, Settings, Target, CheckCircle2 } from "lucide-react";
+import heroOffres from "@/assets/hero-offres.jpg";
 const mainServices = [{
   icon: Search,
   title: "Audit & Diagnostic IA",
@@ -47,22 +48,26 @@ const accompagnement = [{
 const Offres = () => {
   return <Layout>
       {/* Hero */}
-      <section className="py-16 lg:py-24 bg-primary">
-        <div className="container-industrial">
-          <div className="max-w-3xl">
-            <span className="badge-industrial bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 mb-6">
-              Nos offres
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
-              Des solutions concrètes pour votre industrie
-            </h1>
-            <p className="text-lg text-primary-foreground/80 leading-relaxed">
-              Audit, automatisation, marketing digital : des prestations adaptées
-              aux réalités des PME industrielles de la transformation des métaux.
-            </p>
-          </div>
-        </div>
-      </section>
+       <section className="relative min-h-[50vh] flex items-center overflow-hidden">
+         <div className="absolute inset-0">
+           <img src={heroOffres} alt="Atelier industriel avec machines CNC et automatisation" className="w-full h-full object-cover" />
+           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent" />
+         </div>
+         <div className="relative w-full container-industrial py-16 lg:py-24">
+           <div className="max-w-3xl">
+             <span className="badge-industrial bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 mb-6">
+               Nos offres
+             </span>
+             <h1 className="text-4xl md:text-5xl font-bold text-primary-foreground mb-6">
+               Des solutions concrètes pour votre industrie
+             </h1>
+             <p className="text-lg text-primary-foreground/80 leading-relaxed">
+               Audit, automatisation, marketing digital : des prestations adaptées
+               aux réalités des PME industrielles de la transformation des métaux.
+             </p>
+           </div>
+         </div>
+       </section>
 
       {/* Main Services */}
       <section className="py-16 lg:py-24">
