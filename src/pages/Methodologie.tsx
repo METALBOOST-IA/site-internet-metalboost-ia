@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { ArrowRight, Search, Target, Wrench, BarChart3, CheckCircle2, Clock, Users, Lightbulb, Rocket } from "lucide-react";
+import heroMethodologie from "@/assets/hero-methodologie.jpg";
 const steps = [{
   number: "01",
   icon: Search,
@@ -55,8 +56,12 @@ const principles = [{
 const Methodologie = () => {
   return <Layout>
       {/* Hero */}
-      <section className="py-16 lg:py-24 bg-primary">
-        <div className="container-industrial">
+      <section className="relative min-h-[50vh] flex items-center overflow-hidden">
+        <div className="absolute inset-0">
+          <img src={heroMethodologie} alt="Consultant analysant des processus industriels" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent" />
+        </div>
+        <div className="relative w-full container-industrial py-16 lg:py-24">
           <div className="max-w-3xl">
             <span className="badge-industrial bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 mb-6">
               Méthodologie
