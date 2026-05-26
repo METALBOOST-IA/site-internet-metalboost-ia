@@ -30,15 +30,15 @@
 
     /* Header */
     .header {
-      background: var(--bg-card);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
+      background: #145870;
+      border-bottom: none;
+      padding: 12px 24px;
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    .logo { font-size: 20px; font-weight: 700; }
-    .logo span { color: var(--orange); }
+    .logo img { height: 56px; width: auto; filter: brightness(1.1) contrast(1.2) drop-shadow(0 2px 4px rgba(255,255,255,0.3)); }
+    @media (max-width: 500px) { .logo img { height: 44px; } }
     .badge {
       background: var(--orange);
       color: white;
@@ -322,7 +322,9 @@
 <body>
 
 <header class="header">
-  <div class="logo">Metal<span>Boost</span> IA</div>
+  <a href="https://metalboost-ia.fr" class="logo">
+    <img src="logo-metalboost.png" alt="MetalBoost IA Consulting">
+  </a>
   <span class="badge">Audit Express</span>
 </header>
 
@@ -1059,12 +1061,15 @@ function generateReport() {
     <div class="cta-section">
       <h3>Passez à l'action</h3>
       <p>Un échange de 30 minutes suffit pour définir par où commencer et estimer le ROI concret pour votre entreprise.</p>
-      <a class="cta-btn" href="${CALENDLY_URL}" target="_blank" rel="noopener">
+      <a class="cta-btn" href="${CALENDLY_URL}">
         📞 Réservez votre échange gratuit de 30 minutes
       </a>
       <p style="font-size:13px;color:var(--text-muted);margin-top:16px">
         Votre rapport vous sera également envoyé à <strong>${answers.contact.email}</strong>
       </p>
+      <a href="https://metalboost-ia.fr" style="display:inline-block;margin-top:16px;color:var(--text-muted);font-size:14px;text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:10px 20px;transition:color 0.2s,border-color 0.2s" onmouseover="this.style.color='#f8fafc';this.style.borderColor='#64748b'" onmouseout="this.style.color='';this.style.borderColor=''">
+        ← Retour à l'accueil
+      </a>
     </div>
   `;
 }
