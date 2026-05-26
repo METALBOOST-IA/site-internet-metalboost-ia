@@ -77,6 +77,9 @@ const Index = () => {
               <Button variant="heroOutline" size="xl" asChild>
                 <Link to="/offres">Découvrir nos offres</Link>
               </Button>
+              <Button variant="heroOutline" size="xl" asChild>
+                <a href="/audit-express">⚡ Faire mon audit gratuit</a>
+              </Button>
             </div>
           </div>
         </div>
@@ -121,6 +124,29 @@ const Index = () => {
                   <p className="text-muted-foreground">{problem.description}</p>
                 </div>
               </div>)}
+          </div>
+        </div>
+      </section>
+
+      {/* Audit Express CTA Section */}
+      <section className="py-16 lg:py-20 bg-primary">
+        <div className="container-industrial">
+          <div className="max-w-3xl mx-auto text-center">
+            <span className="badge-industrial bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 mb-4">
+              Gratuit · 2 minutes
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground mb-4">
+              Identifiez vos tâches à automatiser
+            </h2>
+            <p className="text-lg text-primary-foreground/80 mb-8 max-w-2xl mx-auto">
+              5 questions. Un rapport personnalisé avec les automatisations les plus rentables pour votre entreprise.
+            </p>
+            <Button variant="hero" size="xl" asChild>
+              <a href="/audit-express">
+                Faire mon audit express gratuit
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </Button>
           </div>
         </div>
       </section>
