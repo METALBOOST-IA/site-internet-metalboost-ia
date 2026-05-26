@@ -1,6 +1,10 @@
 {
   "rewrites": [
     {
+      "source": "/audit-express",
+      "destination": "/audit-express/index.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/"
     }

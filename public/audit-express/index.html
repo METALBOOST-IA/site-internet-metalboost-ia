@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audit Express – Identifiez vos automatisations | MetalBoost IA</title>
+  <meta name="description" content="Découvrez en 2 minutes quelles tâches de votre entreprise peuvent être automatisées grâce à l'IA et au No Code.">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --orange: #f97316;
+      --orange-dark: #ea580c;
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --border: #334155;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --success: #22c55e;
+      --radius: 12px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo { font-size: 20px; font-weight: 700; }
+    .logo span { color: var(--orange); }
+    .badge {
+      background: var(--orange);
+      color: white;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Container */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 40px 20px 80px;
+    }
+
+    /* Progress */
+    .progress-label {
+      text-align: right;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .progress-bar {
+      background: var(--border);
+      height: 4px;
+      border-radius: 2px;
+      margin-bottom: 40px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--orange);
+      border-radius: 2px;
+      transition: width 0.4s ease;
+    }
+
+    /* Steps */
+    .step { display: none; }
+    .step.active { display: block; animation: fadeIn 0.3s ease; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .step-number {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--orange);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    h2 { font-size: 26px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+    .subtitle { color: var(--text-muted); margin-bottom: 28px; font-size: 15px; }
+
+    /* Options */
+    .options-grid { display: grid; gap: 10px; margin-bottom: 28px; }
+    .options-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 500px) { .options-grid.cols-2 { grid-template-columns: 1fr; } }
+
+    .task-category-header {
+      grid-column: 1 / -1;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--orange);
+      padding: 10px 0 4px;
+      border-bottom: 1px solid var(--border);
+      margin-top: 4px;
+    }
+    .task-category-header:first-child { margin-top: 0; padding-top: 0; }
+
+    .option-card {
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      user-select: none;
+    }
+    .option-card:hover { border-color: var(--orange); background: rgba(249,115,22,0.05); }
+    .option-card.selected { border-color: var(--orange); background: rgba(249,115,22,0.1); }
+
+    .option-icon { font-size: 22px; flex-shrink: 0; }
+    .option-text { flex: 1; }
+    .option-label { font-weight: 600; font-size: 15px; }
+    .option-desc { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+
+    .option-check {
+      width: 22px; height: 22px;
+      border: 2px solid var(--border);
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s;
+    }
+    .option-card.selected .option-check { background: var(--orange); border-color: var(--orange); }
+    .option-check::after {
+      content: '';
+      width: 8px; height: 8px;
+      background: white;
+      border-radius: 50%;
+      display: none;
+    }
+    .option-card.selected .option-check::after { display: block; }
+
+    /* Checkbox variant */
+    .option-card.checkbox .option-check { border-radius: 5px; }
+    .option-card.checkbox.selected .option-check::after {
+      width: 5px; height: 9px;
+      background: none;
+      border: 2.5px solid white;
+      border-top: none; border-left: none;
+      transform: rotate(45deg) translate(-1px, -1px);
+      border-radius: 0;
+    }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 26px;
+      border-radius: 8px;
+      font-weight: 600; font-size: 15px;
+      cursor: pointer; border: none;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--orange); color: white; }
+    .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); }
+    .btn-primary:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+    .btn-secondary { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--text-muted); color: var(--text); }
+    .btn-group { display: flex; gap: 12px; align-items: center; }
+
+    /* Form */
+    .form-group { margin-bottom: 18px; }
+    label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 7px; }
+    label .req { color: var(--orange); }
+    input[type="text"], input[type="email"], input[type="tel"] {
+      width: 100%;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 16px;
+      color: var(--text);
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    input:focus { border-color: var(--orange); }
+    input::placeholder { color: var(--text-muted); }
+
+    /* Intro */
+    .intro-hero { text-align: center; padding: 16px 0; }
+    .intro-icon { font-size: 60px; margin-bottom: 20px; }
+    .intro-hero h1 { font-size: 30px; font-weight: 700; margin-bottom: 14px; }
+    .intro-features {
+      display: flex; gap: 20px; justify-content: center;
+      flex-wrap: wrap; margin: 28px 0;
+    }
+    .intro-feature { display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--text-muted); }
+    .intro-feature .dot { width: 7px; height: 7px; background: var(--orange); border-radius: 50%; flex-shrink: 0; }
+
+    /* Loading */
+    .loading { text-align: center; padding: 80px 20px; }
+    .spinner {
+      width: 48px; height: 48px;
+      border: 4px solid var(--border);
+      border-top-color: var(--orange);
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Report */
+    .report-header {
+      background: linear-gradient(135deg, rgba(249,115,22,0.12), rgba(249,115,22,0.04));
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+    .score-circle {
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      margin: 0 auto 14px;
+    }
+    .score-number { font-size: 30px; font-weight: 800; line-height: 1; }
+    .score-unit { font-size: 11px; opacity: 0.8; }
+    .score-title { font-size: 19px; font-weight: 700; margin-bottom: 4px; }
+    .score-desc { color: var(--text-muted); font-size: 14px; }
+    .savings-badge {
+      display: inline-block;
+      margin-top: 16px;
+      background: rgba(34,197,94,0.1);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 15px;
+    }
+    .savings-badge strong { color: var(--success); }
+
+    .section-title { font-size: 17px; font-weight: 700; margin-bottom: 14px; }
+
+    .task-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      margin-bottom: 10px;
+      display: flex; gap: 14px; align-items: flex-start;
+    }
+    .task-rank {
+      width: 30px; height: 30px;
+      background: var(--orange); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 14px; flex-shrink: 0;
+    }
+    .task-name { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
+    .task-detail { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+    .tag {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: 12px; padding: 3px 10px; border-radius: 20px;
+      margin-right: 6px;
+    }
+    .tag-green { background: rgba(34,197,94,0.1); color: var(--success); }
+    .tag-gray  { background: rgba(148,163,184,0.1); color: var(--text-muted); }
+
+    .cta-section {
+      background: linear-gradient(135deg, var(--bg-card), rgba(249,115,22,0.07));
+      border: 1px solid rgba(249,115,22,0.3);
+      border-radius: var(--radius);
+      padding: 32px;
+      text-align: center;
+      margin-top: 24px;
+    }
+    .cta-section h3 { font-size: 21px; margin-bottom: 8px; }
+    .cta-section p { color: var(--text-muted); margin-bottom: 22px; font-size: 15px; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--orange); color: white;
+      padding: 15px 30px; border-radius: 8px;
+      font-weight: 700; font-size: 16px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .cta-btn:hover { background: var(--orange-dark); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(249,115,22,0.3); }
+
+    .error-msg {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      color: #fca5a5;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 14px;
+      margin-top: 14px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--orange); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">Metal<span>Boost</span> IA</div>
+  <span class="badge">Audit Express</span>
+</header>
+
+<div class="container">
+
+  <div class="progress-label" id="progressLabel">Démarrez l'audit</div>
+  <div class="progress-bar">
+    <div class="progress-fill" id="progressFill" style="width:3%"></div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="step active" id="step-0">
+    <div class="intro-hero">
+      <div class="intro-icon">⚙️</div>
+      <h1>Identifiez vos tâches à automatiser</h1>
+      <p class="subtitle">5 questions. 2 minutes. Un rapport personnalisé avec les automatisations les plus rentables pour votre entreprise.</p>
+      <div class="intro-features">
+        <div class="intro-feature"><span class="dot"></span>Adapté à la métallerie</div>
+        <div class="intro-feature"><span class="dot"></span>100% gratuit</div>
+        <div class="intro-feature"><span class="dot"></span>Rapport immédiat</div>
+      </div>
+      <button class="btn btn-primary" onclick="nextStep()" style="font-size:16px;padding:15px 32px">
+        Démarrer l'audit &rarr;
+      </button>
+    </div>
+  </div>
+
+  <!-- Q1 : Activité -->
+  <div class="step" id="step-1">
+    <div class="step-number">Question 1 sur 5</div>
+    <h2>Quelle est votre activité principale&nbsp;?</h2>
+    <p class="subtitle">Sélectionnez le secteur qui correspond le mieux à votre entreprise.</p>
+    <div class="options-grid cols-2" id="q1-options">
+      <div class="option-card" data-value="laser-pliage" onclick="selectOption('q1', this)">
+        <div class="option-icon">🔧</div>
+        <div class="option-text"><div class="option-label">Découpe laser / Pliage</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="soudure" onclick="selectOption('q1', this)">
+        <div class="option-icon">⚡</div>
+        <div class="option-text"><div class="option-label">Soudure / Assemblage</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="traitement" onclick="selectOption('q1', this)">
+        <div class="option-icon">🏭</div>
+        <div class="option-text"><div class="option-label">Traitement de surface</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="usinage" onclick="selectOption('q1', this)">
+        <div class="option-icon">⚙️</div>
+        <div class="option-text"><div class="option-label">Usinage / Tournage</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="tolerie" onclick="selectOption('q1', this)">
+        <div class="option-icon">🔩</div>
+        <div class="option-text"><div class="option-label">Tôlerie / Chaudronnerie</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="autre" onclick="selectOption('q1', this)">
+        <div class="option-icon">🏗️</div>
+        <div class="option-text"><div class="option-label">Autre industrie</div></div>
+        <div class="option-check"></div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="prevStep()">← Retour</button>
+      <button class="btn btn-primary" id="btn-q1" onclick="nextStep()" disabled>Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q2 : Effectif -->
+  <div class="step" id="step-2">
+    <div class="step-number">Question 2 sur 5</div>
+    <h2>Quel est l'effectif de votre entreprise&nbsp;?</h2>
+    <p class="subtitle">Cela nous permet d'adapter les recommandations à votre échelle.</p>
+    <div class="options-grid" id="q2-options">
+      <div class="option-card" data-value="1-10" onclick="selectOption('q2', this)">
+        <div class="option-icon">👤</div>
+        <div class="option-text">
+          <div class="option-label">1 à 10 salariés</div>
+          <div class="option-desc">TPE, artisan ou petite structure</div>
+        </div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="11-50" onclick="selectOption('q2', this)">
+        <div class="option-icon">👥</div>
+        <div class="option-text">
+          <div class="option-label">11 à 50 salariés</div>
+          <div class="option-desc">PME en croissance</div>
+        </div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="51-200" onclick="selectOption('q2', this)">
+        <div class="option-icon">🏢</div>
+        <div class="option-text">
+          <div class="option-label">51 à 200 salariés</div>
+          <div class="option-desc">ETI établie</div>
+        </div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="200+" onclick="selectOption('q2', this)">
+        <div class="option-icon">🏭</div>
+        <div class="option-text">
+          <div class="option-label">Plus de 200 salariés</div>
+          <div class="option-desc">Grande entreprise industrielle</div>
+        </div>
+        <div class="option-check"></div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="prevStep()">← Retour</button>
+      <button class="btn btn-primary" id="btn-q2" onclick="nextStep()" disabled>Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q3 : Tâches (multi) -->
+  <div class="step" id="step-3">
+    <div class="step-number">Question 3 sur 5</div>
+    <h2>Quelles tâches vous volent le plus de temps&nbsp;?</h2>
+    <p class="subtitle">Sélectionnez toutes les tâches répétitives qui vous freinent. Plusieurs choix possibles.</p>
+    <div class="options-grid cols-2" id="q3-options">
+
+      <div class="task-category-header">🤝 Commercial</div>
+
+      <div class="option-card checkbox" data-value="relance-devis" onclick="toggleOption('q3', this)">
+        <div class="option-icon">📧</div>
+        <div class="option-text"><div class="option-label">Suivi et relance des devis envoyés</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="mails" onclick="toggleOption('q3', this)">
+        <div class="option-icon">📬</div>
+        <div class="option-text"><div class="option-label">Lire et répondre aux mails</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="etude-devis" onclick="toggleOption('q3', this)">
+        <div class="option-icon">🔍</div>
+        <div class="option-text"><div class="option-label">Étudier les demandes de devis / appels d'offres</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="support-client" onclick="toggleOption('q3', this)">
+        <div class="option-icon">💬</div>
+        <div class="option-text"><div class="option-label">Répondre aux interrogations des clients</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="historique-client" onclick="toggleOption('q3', this)">
+        <div class="option-icon">🕐</div>
+        <div class="option-text"><div class="option-label">Retrouver l'historique d'un client</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="conformite" onclick="toggleOption('q3', this)">
+        <div class="option-icon">✅</div>
+        <div class="option-text"><div class="option-label">Vérifier la conformité commande / devis</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="reseaux-sociaux" onclick="toggleOption('q3', this)">
+        <div class="option-icon">📱</div>
+        <div class="option-text"><div class="option-label">Créer du contenu sur les réseaux sociaux (LinkedIn…)</div></div>
+        <div class="option-check"></div>
+      </div>
+
+      <div class="task-category-header">🗂️ Administratif</div>
+
+      <div class="option-card checkbox" data-value="crm-erp" onclick="toggleOption('q3', this)">
+        <div class="option-icon">🗄️</div>
+        <div class="option-text"><div class="option-label">Remplir mon CRM ou ERP</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="comptes-rendus" onclick="toggleOption('q3', this)">
+        <div class="option-icon">📝</div>
+        <div class="option-text"><div class="option-label">Faire mes comptes rendus de réunion / RDV clients</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="tableaux-bord" onclick="toggleOption('q3', this)">
+        <div class="option-icon">📊</div>
+        <div class="option-text"><div class="option-label">Construire et remplir mes tableaux de bord</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="relance-factures" onclick="toggleOption('q3', this)">
+        <div class="option-icon">💶</div>
+        <div class="option-text"><div class="option-label">Relancer ses factures impayées</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="enregistrement" onclick="toggleOption('q3', this)">
+        <div class="option-icon">👤</div>
+        <div class="option-text"><div class="option-label">Enregistrer un nouveau client ou fournisseur</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="saisie-donnees" onclick="toggleOption('q3', this)">
+        <div class="option-icon">⌨️</div>
+        <div class="option-text"><div class="option-label">Saisir et transférer des données entre mes outils</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="classement" onclick="toggleOption('q3', this)">
+        <div class="option-icon">🗂️</div>
+        <div class="option-text"><div class="option-label">Classer et rechercher ses données</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="formation" onclick="toggleOption('q3', this)">
+        <div class="option-icon">🎓</div>
+        <div class="option-text"><div class="option-label">Former mon personnel à mes process</div></div>
+        <div class="option-check"></div>
+      </div>
+
+      <div class="task-category-header">🏭 Production</div>
+
+      <div class="option-card checkbox" data-value="planning-atelier" onclick="toggleOption('q3', this)">
+        <div class="option-icon">📅</div>
+        <div class="option-text"><div class="option-label">Planifier sa charge atelier</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="avancement-pieces" onclick="toggleOption('q3', this)">
+        <div class="option-icon">⚙️</div>
+        <div class="option-text"><div class="option-label">Suivre l'avancement des pièces produites</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="stocks" onclick="toggleOption('q3', this)">
+        <div class="option-icon">📦</div>
+        <div class="option-text"><div class="option-label">Gérer stock / approvisionnement et consulter fournisseurs</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="non-conformes" onclick="toggleOption('q3', this)">
+        <div class="option-icon">⚠️</div>
+        <div class="option-text"><div class="option-label">Suivre les pièces non-conformes</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="tri-decoupe" onclick="toggleOption('q3', this)">
+        <div class="option-icon">🔧</div>
+        <div class="option-text"><div class="option-label">Trier / pointer les pièces qui sortent de la découpe</div></div>
+        <div class="option-check"></div>
+      </div>
+
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="prevStep()">← Retour</button>
+      <button class="btn btn-primary" id="btn-q3" onclick="nextStep()" disabled>Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q4 : Temps passé -->
+  <div class="step" id="step-4">
+    <div class="step-number">Question 4 sur 5</div>
+    <h2>Combien d'heures par semaine sur ces tâches&nbsp;?</h2>
+    <p class="subtitle">Estimez le temps cumulé passé sur l'ensemble de ces tâches répétitives.</p>
+    <div class="options-grid" id="q4-options">
+      <div class="option-card" data-value="lt5" onclick="selectOption('q4', this)">
+        <div class="option-icon">⏱️</div>
+        <div class="option-text">
+          <div class="option-label">Moins de 5h / semaine</div>
+          <div class="option-desc">Tâches ponctuelles</div>
+        </div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="5-10" onclick="selectOption('q4', this)">
+        <div class="option-icon">⏰</div>
+        <div class="option-text">
+          <div class="option-label">5 à 10h / semaine</div>
+          <div class="option-desc">Une journée perdue</div>
+        </div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="10-20" onclick="selectOption('q4', this)">
+        <div class="option-icon">🕐</div>
+        <div class="option-text">
+          <div class="option-label">10 à 20h / semaine</div>
+          <div class="option-desc">2 à 3 jours perdus</div>
+        </div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card" data-value="gt20" onclick="selectOption('q4', this)">
+        <div class="option-icon">🚨</div>
+        <div class="option-text">
+          <div class="option-label">Plus de 20h / semaine</div>
+          <div class="option-desc">La moitié de votre temps !</div>
+        </div>
+        <div class="option-check"></div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="prevStep()">← Retour</button>
+      <button class="btn btn-primary" id="btn-q4" onclick="nextStep()" disabled>Suivant →</button>
+    </div>
+  </div>
+
+  <!-- Q5 : Outils (multi) -->
+  <div class="step" id="step-5">
+    <div class="step-number">Question 5 sur 5</div>
+    <h2>Quels outils utilisez-vous actuellement&nbsp;?</h2>
+    <p class="subtitle">Sélectionnez tous les outils présents dans votre entreprise. Plusieurs choix possibles.</p>
+    <div class="options-grid" id="q5-options">
+      <div class="option-card checkbox" data-value="excel" onclick="toggleOption('q5', this)">
+        <div class="option-icon">📊</div>
+        <div class="option-text"><div class="option-label">Excel / Tableurs</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="erp" onclick="toggleOption('q5', this)">
+        <div class="option-icon">🖥️</div>
+        <div class="option-text"><div class="option-label">ERP (SAP, Sage, Cegid...)</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="logiciel-metier" onclick="toggleOption('q5', this)">
+        <div class="option-icon">🔧</div>
+        <div class="option-text"><div class="option-label">Logiciel métier (GPAO, devis...)</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="email" onclick="toggleOption('q5', this)">
+        <div class="option-icon">📧</div>
+        <div class="option-text"><div class="option-label">Email principalement</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="papier" onclick="toggleOption('q5', this)">
+        <div class="option-icon">📋</div>
+        <div class="option-text"><div class="option-label">Papier / processus manuels</div></div>
+        <div class="option-check"></div>
+      </div>
+      <div class="option-card checkbox" data-value="aucun" onclick="toggleOption('q5', this)">
+        <div class="option-icon">❌</div>
+        <div class="option-text"><div class="option-label">Aucun outil informatique dédié</div></div>
+        <div class="option-check"></div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="prevStep()">← Retour</button>
+      <button class="btn btn-primary" id="btn-q5" onclick="nextStep()" disabled>Voir mon rapport →</button>
+    </div>
+  </div>
+
+  <!-- Contact -->
+  <div class="step" id="step-6">
+    <div class="step-number">Dernière étape</div>
+    <h2>Où envoyer votre rapport&nbsp;?</h2>
+    <p class="subtitle">Votre rapport est prêt. Entrez vos coordonnées pour le recevoir et, si vous le souhaitez, planifier un échange gratuit.</p>
+
+    <div class="form-group">
+      <label>Prénom et nom <span class="req">*</span></label>
+      <input type="text" id="contact-name" placeholder="Jean Dupont" oninput="validateContact()">
+    </div>
+    <div class="form-group">
+      <label>Email professionnel <span class="req">*</span></label>
+      <input type="email" id="contact-email" placeholder="jean.dupont@entreprise.fr" oninput="validateContact()">
+    </div>
+    <div class="form-group">
+      <label>Nom de l'entreprise <span class="req">*</span></label>
+      <input type="text" id="contact-company" placeholder="Métal Industries SAS" oninput="validateContact()">
+    </div>
+    <div class="form-group">
+      <label>Téléphone <span style="color:var(--text-muted);font-weight:400">(optionnel)</span></label>
+      <input type="tel" id="contact-phone" placeholder="06 00 00 00 00">
+    </div>
+
+    <div id="contact-error" class="error-msg" style="display:none"></div>
+
+    <div class="btn-group" style="margin-top:8px">
+      <button class="btn btn-secondary" onclick="prevStep()">← Retour</button>
+      <button class="btn btn-primary" id="btn-contact" onclick="submitAndShowReport()" disabled>Voir mon rapport →</button>
+    </div>
+
+    <p style="font-size:13px;color:var(--text-muted);margin-top:16px">
+      🔒 Vos données sont confidentielles et ne seront jamais revendues.
+    </p>
+  </div>
+
+  <!-- Loading -->
+  <div class="step" id="step-loading">
+    <div class="loading">
+      <div class="spinner"></div>
+      <p style="color:var(--text-muted)">Génération de votre rapport personnalisé...</p>
+    </div>
+  </div>
+
+  <!-- Report (généré dynamiquement) -->
+  <div class="step" id="step-report"></div>
+
+</div>
+
+<footer>
+  <p>&copy; 2025 MetalBoost IA &mdash; Conseil en IA et No Code pour l'industrie métallurgique</p>
+  <p style="margin-top:6px"><a href="https://metalboost-ia.fr">metalboost-ia.fr</a></p>
+</footer>
+
+<script>
+// ============================================================
+//  CONFIGURATION  –  À personnaliser avant mise en ligne
+// ============================================================
+
+// URL de votre webhook n8n – remplacez avant déploiement
+// Laissez vide ('') pour désactiver l'envoi pendant les tests
+const WEBHOOK_URL = 'https://n8n.metalboost-ia.fr/webhook/audit-express';
+
+// Lien Calendly pour le bouton "Réserver un audit"
+const CALENDLY_URL = 'https://calendly.com/metalboost-ia/audit-gratuit';
+
+// ============================================================
+//  DONNÉES DES TÂCHES
+// ============================================================
+const TASKS = {
+  'relance-devis': {
+    label: 'Suivi et relance des devis automatisés',
+    detail: 'Détection automatique des devis sans réponse et envoi de relances personnalisées au bon moment, sans aucune action manuelle.',
+    saving: '3 à 5h / semaine', savingMin: 3, savingMax: 5,
+    tool: 'n8n + CRM', score: 9
+  },
+  'saisie-donnees': {
+    label: 'Élimination de la double saisie',
+    detail: 'Synchronisation automatique entre tous vos outils (ERP, tableurs, email) sans aucune ressaisie manuelle.',
+    saving: '3 à 6h / semaine', savingMin: 3, savingMax: 6,
+    tool: 'Connecteurs inter-outils', score: 9
+  },
+  'relance-factures': {
+    label: 'Relances factures impayées automatiques',
+    detail: 'Envoi automatique de relances progressives (J+15, J+30, J+45) avec escalade selon le niveau d\'urgence.',
+    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
+    tool: 'n8n + logiciel comptable', score: 9
+  },
+  'crm-erp': {
+    label: 'Alimentation automatique du CRM / ERP',
+    detail: 'Création et mise à jour automatique des fiches clients/contacts à partir des emails, formulaires et interactions commerciales.',
+    saving: '3 à 5h / semaine', savingMin: 3, savingMax: 5,
+    tool: 'n8n + CRM / ERP', score: 9
+  },
+  'etude-devis': {
+    label: 'Analyse des demandes de devis par IA',
+    detail: 'L\'IA lit et structure automatiquement les appels d\'offres entrants pour préparer les éléments clés avant votre chiffrage.',
+    saving: '3 à 5h / semaine', savingMin: 3, savingMax: 5,
+    tool: 'IA générative', score: 8
+  },
+  'comptes-rendus': {
+    label: 'Comptes rendus de réunion générés par IA',
+    detail: 'Transcription et résumé automatique de vos réunions et RDV clients, avec extraction des actions à suivre.',
+    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
+    tool: 'IA + transcription', score: 8
+  },
+  'tableaux-bord': {
+    label: 'Tableaux de bord mis à jour automatiquement',
+    detail: 'Tableaux de bord générés et actualisés automatiquement chaque semaine à partir de vos données existantes.',
+    saving: '3 à 4h / semaine', savingMin: 3, savingMax: 4,
+    tool: 'n8n + Google Sheets', score: 8
+  },
+  'enregistrement': {
+    label: 'Création automatique des fiches tiers',
+    detail: 'Enregistrement semi-automatique des nouveaux clients et fournisseurs avec pré-remplissage depuis les emails ou formulaires.',
+    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
+    tool: 'n8n + ERP', score: 8
+  },
+  'conformite': {
+    label: 'Contrôle de conformité commande / devis',
+    detail: 'Vérification automatique des écarts entre la commande reçue et le devis initial, avec alerte en cas d\'anomalie.',
+    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
+    tool: 'IA + logiciel métier', score: 7
+  },
+  'support-client': {
+    label: 'Réponses automatiques aux clients',
+    detail: 'Assistant IA qui répond aux questions courantes de vos clients (délais, statut commande, tarifs) en votre nom.',
+    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
+    tool: 'IA générative', score: 7
+  },
+  'planning-atelier': {
+    label: 'Aide à la planification de la charge atelier',
+    detail: 'Visualisation automatique de la charge par poste et suggestions d\'ordonnancement selon les priorités et délais.',
+    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
+    tool: 'Dashboard No Code', score: 7
+  },
+  'avancement-pieces': {
+    label: 'Suivi d\'avancement des pièces en temps réel',
+    detail: 'Dashboard automatique de l\'état des ordres de fabrication avec alertes en cas de retard ou d\'anomalie.',
+    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
+    tool: 'Dashboard No Code', score: 7
+  },
+  'stocks': {
+    label: 'Alertes stock et consultation fournisseurs',
+    detail: 'Surveillance automatique des niveaux de stock avec alertes immédiates et envoi de demandes de prix aux fournisseurs.',
+    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
+    tool: 'n8n + alertes automatiques', score: 7
+  },
+  'non-conformes': {
+    label: 'Suivi des pièces non-conformes',
+    detail: 'Enregistrement et suivi automatique des non-conformités avec notification aux responsables et traçabilité complète.',
+    saving: '1 à 3h / semaine', savingMin: 1, savingMax: 3,
+    tool: 'n8n + formulaire', score: 7
+  },
+  'classement': {
+    label: 'Classement et recherche de données facilités',
+    detail: 'Organisation automatique de vos fichiers et documents avec recherche intelligente par client, chantier ou référence.',
+    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
+    tool: 'IA + Google Drive', score: 7
+  },
+  'historique-client': {
+    label: 'Accès instantané à l\'historique client',
+    detail: 'Centralisation automatique de tout l\'historique d\'un client (devis, commandes, échanges) accessible en un clic.',
+    saving: '1 à 2h / semaine', savingMin: 1, savingMax: 2,
+    tool: 'CRM No Code', score: 6
+  },
+  'mails': {
+    label: 'Tri et réponses aux emails assistés par IA',
+    detail: 'Catégorisation automatique de vos emails entrants et suggestions de réponses prêtes à envoyer.',
+    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
+    tool: 'IA + Gmail', score: 6
+  },
+  'tri-decoupe': {
+    label: 'Pointage des pièces en sortie de découpe',
+    detail: 'Saisie simplifiée par scan ou formulaire mobile pour pointer les pièces produites et alimenter le suivi en temps réel.',
+    saving: '1 à 2h / semaine', savingMin: 1, savingMax: 2,
+    tool: 'Formulaire mobile', score: 5
+  },
+  'reseaux-sociaux': {
+    label: 'Création de contenu LinkedIn assistée par IA',
+    detail: 'Génération de publications LinkedIn adaptées à votre secteur, à partir de vos actualités ou réalisations.',
+    saving: '1 à 3h / semaine', savingMin: 1, savingMax: 3,
+    tool: 'IA générative', score: 6
+  },
+  'formation': {
+    label: 'Bases de connaissance et guides de process',
+    detail: 'Création automatique de fiches process et FAQ internes à partir de vos documents existants, accessibles à votre équipe.',
+    saving: '1 à 2h / semaine', savingMin: 1, savingMax: 2,
+    tool: 'IA + base de connaissance', score: 5
+  }
+};
+
+// ============================================================
+//  STATE
+// ============================================================
+let currentStep = 0;
+const answers = { q1: null, q2: null, q3: [], q4: null, q5: [], contact: {} };
+
+// ============================================================
+//  NAVIGATION
+// ============================================================
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+
+  let el;
+  if (n === 'loading') el = document.getElementById('step-loading');
+  else if (n === 'report') el = document.getElementById('step-report');
+  else el = document.getElementById('step-' + n);
+
+  if (el) el.classList.add('active');
+
+  const label = document.getElementById('progressLabel');
+  const fill  = document.getElementById('progressFill');
+
+  if (n === 0) {
+    label.textContent = 'Démarrez l\'audit';
+    fill.style.width = '3%';
+  } else if (n === 'loading' || n === 'report') {
+    label.textContent = 'Rapport prêt ✓';
+    fill.style.width = '100%';
+  } else {
+    label.textContent = `Étape ${n} sur 6`;
+    fill.style.width = `${Math.round((n / 6) * 100)}%`;
+  }
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function nextStep() {
+  currentStep++;
+  showStep(currentStep);
+}
+
+function prevStep() {
+  if (currentStep > 0) { currentStep--; showStep(currentStep); }
+}
+
+// ============================================================
+//  SÉLECTION UNIQUE
+// ============================================================
+function selectOption(qId, card) {
+  const container = document.getElementById(qId + '-options');
+  container.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
+  card.classList.add('selected');
+  answers[qId] = card.dataset.value;
+
+  const btn = document.getElementById('btn-' + qId);
+  if (btn) btn.disabled = false;
+}
+
+// ============================================================
+//  SÉLECTION MULTIPLE
+// ============================================================
+function toggleOption(qId, card) {
+  card.classList.toggle('selected');
+  const selected = [...document.getElementById(qId + '-options')
+    .querySelectorAll('.option-card.selected')]
+    .map(c => c.dataset.value);
+  answers[qId] = selected;
+
+  const btn = document.getElementById('btn-' + qId);
+  if (btn) btn.disabled = selected.length === 0;
+}
+
+// ============================================================
+//  VALIDATION CONTACT
+// ============================================================
+function validateContact() {
+  const name    = document.getElementById('contact-name').value.trim();
+  const email   = document.getElementById('contact-email').value.trim();
+  const company = document.getElementById('contact-company').value.trim();
+  const ok = name && company && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  document.getElementById('btn-contact').disabled = !ok;
+}
+
+// ============================================================
+//  SOUMISSION ET RAPPORT
+// ============================================================
+async function submitAndShowReport() {
+  answers.contact = {
+    name:    document.getElementById('contact-name').value.trim(),
+    email:   document.getElementById('contact-email').value.trim(),
+    company: document.getElementById('contact-company').value.trim(),
+    phone:   document.getElementById('contact-phone').value.trim()
+  };
+
+  showStep('loading');
+
+  // Envoi au webhook n8n (non bloquant)
+  if (WEBHOOK_URL) {
+    const payload = {
+      source:    'audit-express-metalboost',
+      timestamp: new Date().toISOString(),
+      contact:   answers.contact,
+      reponses: {
+        activite:        answers.q1,
+        effectif:        answers.q2,
+        taches:          answers.q3,
+        tempsParSemaine: answers.q4,
+        outils:          answers.q5
+      },
+      score:     calculateScore(),
+      topTaches: getTopTasks().map(t => t.label)
+    };
+    fetch(WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(() => {}); // silencieux si indisponible
+  }
+
+  await new Promise(r => setTimeout(r, 1600));
+  generateReport();
+  showStep('report');
+}
+
+// ============================================================
+//  CALCUL DU SCORE
+// ============================================================
+function calculateScore() {
+  let score = 0;
+
+  // Tâches sélectionnées (max 45 pts)
+  const taskTotal = answers.q3.reduce((sum, t) => sum + (TASKS[t]?.score || 5), 0);
+  score += Math.min(taskTotal * 3, 45);
+
+  // Temps passé (max 35 pts)
+  const timeBonus = { lt5: 10, '5-10': 20, '10-20': 30, gt20: 35 };
+  score += timeBonus[answers.q4] || 15;
+
+  // Outils primitifs = plus de potentiel (max 20 pts)
+  const primitive = answers.q5.filter(t => ['excel','email','papier','aucun'].includes(t)).length;
+  score += Math.min(primitive * 5, 20);
+
+  return Math.min(Math.round(score), 100);
+}
+
+function getTopTasks() {
+  return answers.q3
+    .map(t => ({ key: t, ...TASKS[t] }))
+    .sort((a, b) => b.score - a.score)
+    .slice(0, 3);
+}
+
+function getScoreInfo(score) {
+  if (score >= 75) return {
+    label: 'Très élevé',
+    desc: 'Votre entreprise a un potentiel d\'automatisation exceptionnel. Des gains rapides et significatifs sont atteignables.'
+  };
+  if (score >= 55) return {
+    label: 'Élevé',
+    desc: 'De nombreuses tâches peuvent être automatisées rapidement avec un retour sur investissement très rapide.'
+  };
+  if (score >= 35) return {
+    label: 'Significatif',
+    desc: 'Plusieurs automatisations à fort impact ont été identifiées pour votre profil.'
+  };
+  return {
+    label: 'Modéré',
+    desc: 'Des opportunités ciblées existent pour vous faire gagner du temps sur les tâches les plus répétitives.'
+  };
+}
+
+// ============================================================
+//  GÉNÉRATION DU RAPPORT
+// ============================================================
+function generateReport() {
+  const score    = calculateScore();
+  const topTasks = getTopTasks();
+  const info     = getScoreInfo(score);
+  const prenom   = answers.contact.name.split(' ')[0];
+
+  const savMin = topTasks.reduce((s, t) => s + (t.savingMin || 2), 0);
+  const savMax = topTasks.reduce((s, t) => s + (t.savingMax || 4), 0);
+  const savingsText = topTasks.length ? `${savMin} à ${savMax}h récupérables par semaine` : 'Potentiel identifié';
+
+  const tasksHTML = topTasks.map((task, i) => `
+    <div class="task-card">
+      <div class="task-rank">${i + 1}</div>
+      <div>
+        <div class="task-name">${task.label}</div>
+        <div class="task-detail">${task.detail}</div>
+        <span class="tag tag-green">⏱ ${task.saving}</span>
+        <span class="tag tag-gray">🛠 ${task.tool}</span>
+      </div>
+    </div>
+  `).join('');
+
+  document.getElementById('step-report').innerHTML = `
+    <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">
+      Rapport personnalisé pour <strong>${prenom}</strong> &mdash; ${answers.contact.company}
+    </p>
+
+    <div class="report-header">
+      <div class="score-circle">
+        <span class="score-number">${score}</span>
+        <span class="score-unit">/ 100</span>
+      </div>
+      <div class="score-title">Potentiel d'automatisation : <span style="color:var(--orange)">${info.label}</span></div>
+      <div class="score-desc">${info.desc}</div>
+      ${topTasks.length ? `<div class="savings-badge">Estimation : <strong>${savingsText}</strong></div>` : ''}
+    </div>
+
+    ${topTasks.length ? `
+      <div class="section-title">🎯 Vos priorités d'automatisation</div>
+      ${tasksHTML}
+    ` : ''}
+
+    <div class="cta-section">
+      <h3>Passez à l'action</h3>
+      <p>Un échange de 30 minutes suffit pour définir par où commencer et estimer le ROI concret pour votre entreprise.</p>
+      <a class="cta-btn" href="${CALENDLY_URL}" target="_blank" rel="noopener">
+        📞 Réserver mon audit gratuit de 30 min
+      </a>
+      <p style="font-size:13px;color:var(--text-muted);margin-top:16px">
+        Votre rapport vous sera également envoyé à <strong>${answers.contact.email}</strong>
+      </p>
+    </div>
+  `;
+}
+
+// Init
+showStep(0);
+</script>
+
+</body>
+</html>
