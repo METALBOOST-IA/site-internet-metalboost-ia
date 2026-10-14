@@ -673,14 +673,14 @@ const TASKS = {
     titre: 'Suivi de commande sans appel pour vos clients',
     detail: 'Selon votre besoin : un espace web où le client suit sa commande, un assistant vocal qui répond au standard, ou un email envoyé automatiquement au client en cas de retard.',
     gain: 'Appels entrants réduits de 40 à 60 %, 1 à 2 h par jour libérées au standard',
-    delai: 'Moyen terme', fiches: [11, 18, 21], score: 7, segs: null
+    delai: 'Moyen terme', fiches: [11, 19, 23], score: 7, segs: null
   },
   'historique-client': {
     cat: 'commercial', icon: '🕐', label: 'Retrouver l\'historique d\'un client',
     titre: 'Fiche client : l\'historique en un clic',
     detail: 'Une fiche unique rassemble automatiquement les devis, commandes, factures et derniers emails de chaque client, avec une recherche par nom.',
     gain: '1 à 2 h par semaine de recherche économisées',
-    delai: 'Moyen terme', fiches: [34], score: 6, segs: null
+    delai: 'Moyen terme', fiches: [16], score: 6, segs: null
   },
   'crm': {
     cat: 'commercial', icon: '🗄️', label: 'Remplir mon CRM ou mon ERP',
@@ -717,35 +717,35 @@ const TASKS = {
     titre: 'Relance automatique des factures impayées',
     detail: 'Vos factures en attente sont surveillées chaque jour. À J+5, J+15 et J+30 après l\'échéance, une relance graduée part automatiquement.',
     gain: 'Délai de paiement réduit de 15 à 30 jours, zéro facture oubliée',
-    delai: 'Moyen terme', fiches: [16], score: 9, segs: null
+    delai: 'Moyen terme', fiches: [17], score: 9, segs: null
   },
   'enregistrement': {
     cat: 'admin', icon: '👤', label: 'Enregistrer un nouveau fournisseur ou un nouveau client',
     titre: 'Arrivée d\'un nouveau fournisseur sans allers-retours',
     detail: 'Un formulaire est envoyé dès la création du fournisseur, les pièces reçues (Kbis, RIB, assurance) sont archivées et la checklist se coche toute seule.',
     gain: '1 à 2 h économisées par fournisseur, aucun document oublié',
-    delai: 'Rapide', fiches: [17], score: 7, segs: null
+    delai: 'Rapide', fiches: [18], score: 7, segs: null
   },
   'classement': {
     cat: 'admin', icon: '🗂️', label: 'Classer et retrouver mes documents',
     titre: 'Classement automatique et recherche des documents',
     detail: 'Chaque document reçu est classé par client, affaire ou référence avec un nom homogène, et une recherche en langage courant retrouve le bon fichier.',
     gain: '2 à 3 h par semaine économisées, plus aucun document introuvable',
-    delai: 'Moyen terme', fiches: [35], score: 6, segs: null
+    delai: 'Moyen terme', fiches: [20], score: 6, segs: null
   },
   'dictee': {
     cat: 'admin', icon: '🎙️', label: 'Rédiger des emails, des notes et des comptes rendus au clavier',
     titre: 'Dictée vocale à la place de la saisie au clavier',
     detail: 'Une dictée vocale transcrit votre voix dans n\'importe quel champ de texte (email, logiciel, navigateur), sans formation, même en atelier.',
     gain: 'Rédaction 3 fois plus rapide',
-    delai: 'Rapide', fiches: [29], score: 5, segs: null
+    delai: 'Rapide', fiches: [32], score: 5, segs: null
   },
   'formation': {
     cat: 'admin', icon: '🎓', label: 'Former mon personnel à mes process',
     titre: 'Guide de formation pour transmettre le savoir-faire',
     detail: 'Un guide de formation est rédigé à partir de vos procédures existantes, fiches techniques et interviews, puis mis à jour à chaque changement.',
     gain: 'Autonomie du salarié atteinte 2 fois plus vite',
-    delai: 'Moyen terme', fiches: [28], score: 5, segs: null
+    delai: 'Moyen terme', fiches: [31], score: 5, segs: null
   },
 
   // ---------- Production ----------
@@ -761,35 +761,35 @@ const TASKS = {
     titre: 'Suivi d\'avancement atelier en temps réel, avec alertes de retard',
     detail: 'L\'opérateur signale l\'avancement ou une non-conformité en 30 secondes sur mobile, et un tableau de bord vous alerte avant qu\'un retard n\'arrive.',
     gain: 'Alertes 3 à 5 jours avant le retard, traçabilité complète',
-    delai: 'Rapide à moyen terme', fiches: [19, 20], score: 8, segs: null
+    delai: 'Rapide à moyen terme', fiches: [21, 22], score: 8, segs: null
   },
   'documents-fabrication': {
     cat: 'prod', icon: '📄', label: 'Préparer les fiches techniques, dossiers de fabrication et rapports qualité',
     titre: 'Documents de fabrication et de contrôle générés automatiquement',
     detail: 'Fiches techniques, dossiers de fabrication filtrés par poste et rapports de contrôle qualité sont générés à partir d\'un simple formulaire : il ne reste qu\'à valider.',
     gain: '1 à 2 h économisées par fiche, 45 minutes par lot contrôlé, zéro dossier papier',
-    delai: 'Rapide à structurant', fiches: [22, 23, 26], score: 7, segs: null
+    delai: 'Rapide à structurant', fiches: [24, 25, 28], score: 7, segs: null
   },
   'fichiers-pieces': {
     cat: 'prod', icon: '🔧', label: 'Vérifier les fichiers de commande et trier les pièces après la découpe',
     titre: 'Contrôle des fichiers DXF/STEP et tri des pièces après découpe',
     detail: 'Les fichiers du client sont comparés automatiquement à ceux du devis, et une interface visuelle surligne les pièces de chaque commande après la découpe.',
     gain: 'Zéro fabrication sur un fichier erroné, tri 2 à 3 fois plus rapide',
-    delai: 'Moyen terme', fiches: [24, 25], score: 7, segs: ['laser-pliage', 'tolerie', 'autre']
+    delai: 'Moyen terme', fiches: [26, 27], score: 7, segs: ['laser-pliage', 'tolerie', 'autre']
   },
   'controle-camera': {
     cat: 'prod', icon: '📷', label: 'Contrôler visuellement la qualité des pièces',
     titre: 'Contrôle qualité automatique par caméra',
     detail: 'Une caméra en sortie de machine analyse chaque pièce par vision artificielle et alerte l\'opérateur dès qu\'une anomalie est détectée.',
     gain: 'Non-conformités chez le client réduites de 50 à 80 %',
-    delai: 'Structurant', fiches: [27], score: 5, segs: null
+    delai: 'Structurant', fiches: [30], score: 5, segs: null
   },
   'stocks': {
     cat: 'prod', icon: '📦', label: 'Gérer mes stocks et consulter mes fournisseurs',
     titre: 'Alertes de stock et demandes de prix aux fournisseurs',
     detail: 'Les niveaux de stock sont surveillés chaque jour : alerte dès qu\'un seuil est atteint, demande de prix préparée pour vos fournisseurs habituels après votre validation.',
     gain: '2 à 3 h par semaine économisées, plus de rupture de matière imprévue',
-    delai: 'Moyen terme', fiches: [36], score: 7, segs: null
+    delai: 'Moyen terme', fiches: [29], score: 7, segs: null
   },
 
   // ---------- Marketing ----------
@@ -798,14 +798,14 @@ const TASKS = {
     titre: 'Articles de blog et publications générés pour validation',
     detail: 'Un article optimisé pour le référencement et un lot de publications adaptées à chaque réseau sont générés chaque semaine, puis proposés pour relecture avant publication.',
     gain: 'Trafic organique croissant, 3 à 5 publications par semaine sans charge de travail',
-    delai: 'Rapide', fiches: [30, 31], score: 6, segs: null
+    delai: 'Rapide', fiches: [33, 34], score: 6, segs: null
   },
   'site-web': {
     cat: 'marketing', icon: '🌐', label: 'Attirer des clients grâce à mon site internet',
     titre: 'Site qui génère des demandes de devis et audit SEO/GEO',
     detail: 'Un audit automatique note votre site sur 100 (Google et IA génératives) avec les points à corriger, et un site optimisé reçoit des demandes de devis routées vers le bon interlocuteur.',
     gain: 'Une note claire sur l\'état du site, des demandes de devis entrantes sans prospection active',
-    delai: 'Rapide à moyen terme', fiches: [32, 33], score: 6, segs: null
+    delai: 'Rapide à moyen terme', fiches: [35, 36], score: 6, segs: null
   }
 };
 
