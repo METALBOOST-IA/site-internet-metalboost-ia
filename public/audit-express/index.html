@@ -271,6 +271,7 @@
     }
     .task-name { font-weight: 600; font-size: 15px; margin-bottom: 5px; }
     .task-detail { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+    .task-gain { font-size: 13px; color: var(--success); margin-bottom: 10px; }
     .tag {
       display: inline-flex; align-items: center; gap: 4px;
       font-size: 12px; padding: 3px 10px; border-radius: 20px;
@@ -383,6 +384,11 @@
         <div class="option-text"><div class="option-label">Tôlerie / Chaudronnerie</div></div>
         <div class="option-check"></div>
       </div>
+      <div class="option-card" data-value="machines-speciales" onclick="selectOption('q1', this)">
+        <div class="option-icon">🛠️</div>
+        <div class="option-text"><div class="option-label">Fabrication de machines spéciales</div></div>
+        <div class="option-check"></div>
+      </div>
       <div class="option-card" data-value="autre" onclick="selectOption('q1', this)">
         <div class="option-icon">🏗️</div>
         <div class="option-text"><div class="option-label">Autre industrie</div></div>
@@ -440,123 +446,12 @@
     </div>
   </div>
 
-  <!-- Q3 : Tâches (multi) -->
+  <!-- Q3 : Tâches (multi) — liste construite par renderTasks() selon l'activité choisie -->
   <div class="step" id="step-3">
     <div class="step-number">Question 3 sur 5</div>
     <h2>Quelles tâches vous volent le plus de temps&nbsp;?</h2>
-    <p class="subtitle">Sélectionnez toutes les tâches répétitives qui vous freinent. Plusieurs choix possibles.</p>
-    <div class="options-grid cols-2" id="q3-options">
-
-      <div class="task-category-header">🤝 Commercial</div>
-
-      <div class="option-card checkbox" data-value="relance-devis" onclick="toggleOption('q3', this)">
-        <div class="option-icon">📧</div>
-        <div class="option-text"><div class="option-label">Suivi et relance des devis envoyés</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="mails" onclick="toggleOption('q3', this)">
-        <div class="option-icon">📬</div>
-        <div class="option-text"><div class="option-label">Lire et répondre aux mails</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="etude-devis" onclick="toggleOption('q3', this)">
-        <div class="option-icon">🔍</div>
-        <div class="option-text"><div class="option-label">Étudier les demandes de devis / appels d'offres</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="support-client" onclick="toggleOption('q3', this)">
-        <div class="option-icon">💬</div>
-        <div class="option-text"><div class="option-label">Répondre aux interrogations des clients</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="historique-client" onclick="toggleOption('q3', this)">
-        <div class="option-icon">🕐</div>
-        <div class="option-text"><div class="option-label">Retrouver l'historique d'un client</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="conformite" onclick="toggleOption('q3', this)">
-        <div class="option-icon">✅</div>
-        <div class="option-text"><div class="option-label">Vérifier la conformité commande / devis</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="reseaux-sociaux" onclick="toggleOption('q3', this)">
-        <div class="option-icon">📱</div>
-        <div class="option-text"><div class="option-label">Créer du contenu sur les réseaux sociaux (LinkedIn…)</div></div>
-        <div class="option-check"></div>
-      </div>
-
-      <div class="task-category-header">🗂️ Administratif</div>
-
-      <div class="option-card checkbox" data-value="crm-erp" onclick="toggleOption('q3', this)">
-        <div class="option-icon">🗄️</div>
-        <div class="option-text"><div class="option-label">Remplir mon CRM ou ERP</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="comptes-rendus" onclick="toggleOption('q3', this)">
-        <div class="option-icon">📝</div>
-        <div class="option-text"><div class="option-label">Faire mes comptes rendus de réunion / RDV clients</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="tableaux-bord" onclick="toggleOption('q3', this)">
-        <div class="option-icon">📊</div>
-        <div class="option-text"><div class="option-label">Construire et remplir mes tableaux de bord</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="relance-factures" onclick="toggleOption('q3', this)">
-        <div class="option-icon">💶</div>
-        <div class="option-text"><div class="option-label">Relancer ses factures impayées</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="enregistrement" onclick="toggleOption('q3', this)">
-        <div class="option-icon">👤</div>
-        <div class="option-text"><div class="option-label">Enregistrer un nouveau client ou fournisseur</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="saisie-donnees" onclick="toggleOption('q3', this)">
-        <div class="option-icon">⌨️</div>
-        <div class="option-text"><div class="option-label">Saisir et transférer des données entre mes outils</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="classement" onclick="toggleOption('q3', this)">
-        <div class="option-icon">🗂️</div>
-        <div class="option-text"><div class="option-label">Classer et rechercher ses données</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="formation" onclick="toggleOption('q3', this)">
-        <div class="option-icon">🎓</div>
-        <div class="option-text"><div class="option-label">Former mon personnel à mes process</div></div>
-        <div class="option-check"></div>
-      </div>
-
-      <div class="task-category-header">🏭 Production</div>
-
-      <div class="option-card checkbox" data-value="planning-atelier" onclick="toggleOption('q3', this)">
-        <div class="option-icon">📅</div>
-        <div class="option-text"><div class="option-label">Planifier sa charge atelier</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="avancement-pieces" onclick="toggleOption('q3', this)">
-        <div class="option-icon">⚙️</div>
-        <div class="option-text"><div class="option-label">Suivre l'avancement des pièces produites</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="stocks" onclick="toggleOption('q3', this)">
-        <div class="option-icon">📦</div>
-        <div class="option-text"><div class="option-label">Gérer stock / approvisionnement et consulter fournisseurs</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="non-conformes" onclick="toggleOption('q3', this)">
-        <div class="option-icon">⚠️</div>
-        <div class="option-text"><div class="option-label">Suivre les pièces non-conformes</div></div>
-        <div class="option-check"></div>
-      </div>
-      <div class="option-card checkbox" data-value="tri-decoupe" onclick="toggleOption('q3', this)">
-        <div class="option-icon">🔧</div>
-        <div class="option-text"><div class="option-label">Trier / pointer les pièces qui sortent de la découpe</div></div>
-        <div class="option-check"></div>
-      </div>
-
-    </div>
+    <p class="subtitle">Sélectionnez toutes les tâches qui vous freinent. Plusieurs choix possibles, la liste s'adapte à votre activité.</p>
+    <div class="options-grid cols-2" id="q3-options"></div>
     <div class="btn-group">
       <button class="btn btn-secondary" onclick="prevStep()">← Retour</button>
       <button class="btn btn-primary" id="btn-q3" onclick="nextStep()" disabled>Suivant →</button>
@@ -718,128 +613,211 @@ const CALENDLY_URL = 'https://metalboost-ia.fr/contact';
 
 // ============================================================
 //  DONNÉES DES TÂCHES
+//  Alignées sur le document "36 automatisations pour les industriels".
+//  fiches = numéros des fiches du document, delai = durée de mise en place annoncée dans le document.
+//  segs = null (proposée à tous) ou liste d'activités pour lesquelles la tâche a du sens.
 // ============================================================
+const CATEGORIES = [
+  { key: 'commercial', label: '🤝 Commercial' },
+  { key: 'admin',      label: '🗂️ Administratif' },
+  { key: 'prod',       label: '🏭 Production' },
+  { key: 'marketing',  label: '📣 Marketing et visibilité' }
+];
+
 const TASKS = {
+  // ---------- Commercial ----------
   'relance-devis': {
-    label: 'Suivi et relance des devis automatisés',
-    detail: 'Détection automatique des devis sans réponse et envoi de relances personnalisées au bon moment, sans aucune action manuelle.',
-    saving: '3 à 5h / semaine', savingMin: 3, savingMax: 5,
-    tool: 'n8n + CRM', score: 9
-  },
-  'saisie-donnees': {
-    label: 'Élimination de la double saisie',
-    detail: 'Synchronisation automatique entre tous vos outils (ERP, tableurs, email) sans aucune ressaisie manuelle.',
-    saving: '3 à 6h / semaine', savingMin: 3, savingMax: 6,
-    tool: 'Connecteurs inter-outils', score: 9
-  },
-  'relance-factures': {
-    label: 'Relances factures impayées automatiques',
-    detail: 'Envoi automatique de relances progressives (J+15, J+30, J+45) avec escalade selon le niveau d\'urgence.',
-    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
-    tool: 'n8n + logiciel comptable', score: 9
-  },
-  'crm-erp': {
-    label: 'Alimentation automatique du CRM / ERP',
-    detail: 'Création et mise à jour automatique des fiches clients/contacts à partir des emails, formulaires et interactions commerciales.',
-    saving: '3 à 5h / semaine', savingMin: 3, savingMax: 5,
-    tool: 'n8n + CRM / ERP', score: 9
-  },
-  'etude-devis': {
-    label: 'Analyse des demandes de devis par IA',
-    detail: 'L\'IA lit et structure automatiquement les appels d\'offres entrants pour préparer les éléments clés avant votre chiffrage.',
-    saving: '3 à 5h / semaine', savingMin: 3, savingMax: 5,
-    tool: 'IA générative', score: 8
-  },
-  'comptes-rendus': {
-    label: 'Comptes rendus de réunion générés par IA',
-    detail: 'Transcription et résumé automatique de vos réunions et RDV clients, avec extraction des actions à suivre.',
-    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
-    tool: 'IA + transcription', score: 8
-  },
-  'tableaux-bord': {
-    label: 'Tableaux de bord mis à jour automatiquement',
-    detail: 'Tableaux de bord générés et actualisés automatiquement chaque semaine à partir de vos données existantes.',
-    saving: '3 à 4h / semaine', savingMin: 3, savingMax: 4,
-    tool: 'n8n + Google Sheets', score: 8
-  },
-  'enregistrement': {
-    label: 'Création automatique des fiches tiers',
-    detail: 'Enregistrement semi-automatique des nouveaux clients et fournisseurs avec pré-remplissage depuis les emails ou formulaires.',
-    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
-    tool: 'n8n + ERP', score: 8
-  },
-  'conformite': {
-    label: 'Contrôle de conformité commande / devis',
-    detail: 'Vérification automatique des écarts entre la commande reçue et le devis initial, avec alerte en cas d\'anomalie.',
-    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
-    tool: 'IA + logiciel métier', score: 7
-  },
-  'support-client': {
-    label: 'Réponses automatiques aux clients',
-    detail: 'Assistant IA qui répond aux questions courantes de vos clients (délais, statut commande, tarifs) en votre nom.',
-    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
-    tool: 'IA générative', score: 7
-  },
-  'planning-atelier': {
-    label: 'Aide à la planification de la charge atelier',
-    detail: 'Visualisation automatique de la charge par poste et suggestions d\'ordonnancement selon les priorités et délais.',
-    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
-    tool: 'Dashboard No Code', score: 7
-  },
-  'avancement-pieces': {
-    label: 'Suivi d\'avancement des pièces en temps réel',
-    detail: 'Dashboard automatique de l\'état des ordres de fabrication avec alertes en cas de retard ou d\'anomalie.',
-    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
-    tool: 'Dashboard No Code', score: 7
-  },
-  'stocks': {
-    label: 'Alertes stock et consultation fournisseurs',
-    detail: 'Surveillance automatique des niveaux de stock avec alertes immédiates et envoi de demandes de prix aux fournisseurs.',
-    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
-    tool: 'n8n + alertes automatiques', score: 7
-  },
-  'non-conformes': {
-    label: 'Suivi des pièces non-conformes',
-    detail: 'Enregistrement et suivi automatique des non-conformités avec notification aux responsables et traçabilité complète.',
-    saving: '1 à 3h / semaine', savingMin: 1, savingMax: 3,
-    tool: 'n8n + formulaire', score: 7
-  },
-  'classement': {
-    label: 'Classement et recherche de données facilités',
-    detail: 'Organisation automatique de vos fichiers et documents avec recherche intelligente par client, chantier ou référence.',
-    saving: '2 à 3h / semaine', savingMin: 2, savingMax: 3,
-    tool: 'IA + Google Drive', score: 7
-  },
-  'historique-client': {
-    label: 'Accès instantané à l\'historique client',
-    detail: 'Centralisation automatique de tout l\'historique d\'un client (devis, commandes, échanges) accessible en un clic.',
-    saving: '1 à 2h / semaine', savingMin: 1, savingMax: 2,
-    tool: 'CRM No Code', score: 6
+    cat: 'commercial', icon: '📧', label: 'Suivi et relance des devis envoyés',
+    titre: 'Relance automatique des devis sans réponse',
+    detail: 'Chaque matin, les devis sans réponse sont repérés. Une relance personnalisée part après 1, 3 puis 6 jours et s\'arrête dès que le client répond.',
+    gain: '+5 à 15 % de devis convertis, 4 à 8 h par mois récupérées',
+    delai: 'Moyen terme', fiches: [1], score: 9, segs: null
   },
   'mails': {
-    label: 'Tri et réponses aux emails assistés par IA',
-    detail: 'Catégorisation automatique de vos emails entrants et suggestions de réponses prêtes à envoyer.',
-    saving: '2 à 4h / semaine', savingMin: 2, savingMax: 4,
-    tool: 'IA + Gmail', score: 6
+    cat: 'commercial', icon: '📬', label: 'Lire, trier et répondre aux mails',
+    titre: 'Tri automatique des emails entrants',
+    detail: 'Chaque email est analysé et classé (demande de devis, relance urgente, information, SAV), avec une tâche créée ou une alerte selon la priorité.',
+    gain: '30 à 60 minutes gagnées chaque jour',
+    delai: 'Rapide', fiches: [2], score: 6, segs: null
   },
-  'tri-decoupe': {
-    label: 'Pointage des pièces en sortie de découpe',
-    detail: 'Saisie simplifiée par scan ou formulaire mobile pour pointer les pièces produites et alimenter le suivi en temps réel.',
-    saving: '1 à 2h / semaine', savingMin: 1, savingMax: 2,
-    tool: 'Formulaire mobile', score: 5
+  'demandes-devis': {
+    cat: 'commercial', icon: '🔍', label: 'Étudier les demandes de devis et les appels d\'offres',
+    titre: 'Analyse automatique des demandes de devis et des appels d\'offres',
+    detail: 'Chaque demande est vérifiée dès réception (matière, quantité, plan, délai) et une demande de complément part toute seule s\'il manque une information. Les dossiers d\'appel d\'offres sont résumés avec une recommandation de répondre ou non.',
+    gain: 'Chiffrage dès le premier contact, appel d\'offres analysé en 5 minutes au lieu de 3 heures',
+    delai: 'Rapide', fiches: [3, 6], score: 8, segs: null
   },
-  'reseaux-sociaux': {
-    label: 'Création de contenu LinkedIn assistée par IA',
-    detail: 'Génération de publications LinkedIn adaptées à votre secteur, à partir de vos actualités ou réalisations.',
-    saving: '1 à 3h / semaine', savingMin: 1, savingMax: 3,
-    tool: 'IA générative', score: 6
+  'solvabilite': {
+    cat: 'commercial', icon: '🛡️', label: 'Vérifier la solvabilité d\'un client avant de chiffrer',
+    titre: 'Vérification de la solvabilité avant chiffrage',
+    detail: 'Dès qu\'une demande de devis arrive, un rapport simplifié est généré : score de risque, chiffre d\'affaires, résultat, incidents connus.',
+    gain: 'Risque d\'impayé réduit, temps de chiffrage non gaspillé sur des prospects à risque',
+    delai: 'Rapide', fiches: [7], score: 6, segs: null
+  },
+  'commandes': {
+    cat: 'commercial', icon: '✅', label: 'Saisir les commandes et les comparer au devis',
+    titre: 'Lecture des commandes PDF et contrôle des écarts avec le devis',
+    detail: 'Le PDF de commande reçu par email est lu automatiquement, ses lignes sont saisies dans votre suivi ou votre ERP puis comparées au devis d\'origine : toute différence déclenche une alerte.',
+    gain: '2 à 4 h économisées par commande sur les gros dossiers, zéro écart non détecté',
+    delai: 'Rapide', fiches: [8, 9], score: 8, segs: null
+  },
+  'prix': {
+    cat: 'commercial', icon: '💰', label: 'Garder des prix cohérents et suivre le cours des matières',
+    titre: 'Contrôle de cohérence des prix et veille sur les matières',
+    detail: 'Chaque nouveau devis est comparé à l\'historique des devis similaires, et une alerte part quand le prix d\'une matière dépasse le seuil que vous définissez.',
+    gain: 'Cohérence tarifaire garantie, marges protégées',
+    delai: 'Rapide', fiches: [12, 14], score: 7, segs: null
+  },
+  'clients-suivi': {
+    cat: 'commercial', icon: '💬', label: 'Répondre aux clients sur l\'état de leur commande',
+    titre: 'Suivi de commande sans appel pour vos clients',
+    detail: 'Selon votre besoin : un espace web où le client suit sa commande, un assistant vocal qui répond au standard, ou un email envoyé automatiquement au client en cas de retard.',
+    gain: 'Appels entrants réduits de 40 à 60 %, 1 à 2 h par jour libérées au standard',
+    delai: 'Moyen terme', fiches: [11, 18, 21], score: 7, segs: null
+  },
+  'historique-client': {
+    cat: 'commercial', icon: '🕐', label: 'Retrouver l\'historique d\'un client',
+    titre: 'Fiche client : l\'historique en un clic',
+    detail: 'Une fiche unique rassemble automatiquement les devis, commandes, factures et derniers emails de chaque client, avec une recherche par nom.',
+    gain: '1 à 2 h par semaine de recherche économisées',
+    delai: 'Moyen terme', fiches: [34], score: 6, segs: null
+  },
+  'crm': {
+    cat: 'commercial', icon: '🗄️', label: 'Remplir mon CRM ou mon ERP',
+    titre: 'CRM qui se remplit tout seul',
+    detail: 'Un CRM léger centralise chaque client avec synchronisation automatique des emails, devis, commandes et factures, sans saisie manuelle.',
+    gain: 'Vue client à 360° en temps réel, reprise de contexte immédiate',
+    delai: 'Structurant', fiches: [10], score: 8, segs: null
+  },
+  'prospection': {
+    cat: 'commercial', icon: '🎯', label: 'Prospecter de nouveaux clients',
+    titre: 'Prospection commerciale automatisée',
+    detail: 'Les bonnes cibles sont identifiées, chaque message de prise de contact est personnalisé et les relances par email sont automatisées.',
+    gain: '50 à 100 contacts personnalisés par semaine, pipeline toujours alimenté',
+    delai: 'Moyen terme', fiches: [13], score: 6, segs: null
+  },
+  'comptes-rendus': {
+    cat: 'commercial', icon: '📝', label: 'Faire mes comptes rendus de réunion et de rendez-vous clients',
+    titre: 'Comptes rendus de réunion automatiques',
+    detail: 'Vos réunions (visio ou terrain) sont transcrites et un compte rendu structuré (points clés, décisions, actions) est envoyé à tous les participants.',
+    gain: '30 à 45 minutes économisées par réunion, aucune action oubliée',
+    delai: 'Rapide', fiches: [4], score: 8, segs: null
+  },
+  'tableaux-bord': {
+    cat: 'commercial', icon: '📊', label: 'Construire et remplir mes tableaux de bord',
+    titre: 'Tableau de bord commercial à jour chaque soir',
+    detail: 'Chaque soir, vos devis, factures et règlements sont consolidés dans un tableau de bord : CA signé, en attente, taux de conversion, délai moyen de réponse.',
+    gain: '1 à 2 h par semaine de reporting économisées',
+    delai: 'Rapide', fiches: [5], score: 8, segs: null
+  },
+
+  // ---------- Administratif ----------
+  'relance-factures': {
+    cat: 'admin', icon: '🧾', label: 'Relancer mes factures impayées',
+    titre: 'Relance automatique des factures impayées',
+    detail: 'Vos factures en attente sont surveillées chaque jour. À J+5, J+15 et J+30 après l\'échéance, une relance graduée part automatiquement.',
+    gain: 'Délai de paiement réduit de 15 à 30 jours, zéro facture oubliée',
+    delai: 'Moyen terme', fiches: [16], score: 9, segs: null
+  },
+  'enregistrement': {
+    cat: 'admin', icon: '👤', label: 'Enregistrer un nouveau fournisseur ou un nouveau client',
+    titre: 'Arrivée d\'un nouveau fournisseur sans allers-retours',
+    detail: 'Un formulaire est envoyé dès la création du fournisseur, les pièces reçues (Kbis, RIB, assurance) sont archivées et la checklist se coche toute seule.',
+    gain: '1 à 2 h économisées par fournisseur, aucun document oublié',
+    delai: 'Rapide', fiches: [17], score: 7, segs: null
+  },
+  'classement': {
+    cat: 'admin', icon: '🗂️', label: 'Classer et retrouver mes documents',
+    titre: 'Classement automatique et recherche des documents',
+    detail: 'Chaque document reçu est classé par client, affaire ou référence avec un nom homogène, et une recherche en langage courant retrouve le bon fichier.',
+    gain: '2 à 3 h par semaine économisées, plus aucun document introuvable',
+    delai: 'Moyen terme', fiches: [35], score: 6, segs: null
+  },
+  'dictee': {
+    cat: 'admin', icon: '🎙️', label: 'Rédiger des emails, des notes et des comptes rendus au clavier',
+    titre: 'Dictée vocale à la place de la saisie au clavier',
+    detail: 'Une dictée vocale transcrit votre voix dans n\'importe quel champ de texte (email, logiciel, navigateur), sans formation, même en atelier.',
+    gain: 'Rédaction 3 fois plus rapide',
+    delai: 'Rapide', fiches: [29], score: 5, segs: null
   },
   'formation': {
-    label: 'Bases de connaissance et guides de process',
-    detail: 'Création automatique de fiches process et FAQ internes à partir de vos documents existants, accessibles à votre équipe.',
-    saving: '1 à 2h / semaine', savingMin: 1, savingMax: 2,
-    tool: 'IA + base de connaissance', score: 5
+    cat: 'admin', icon: '🎓', label: 'Former mon personnel à mes process',
+    titre: 'Guide de formation pour transmettre le savoir-faire',
+    detail: 'Un guide de formation est rédigé à partir de vos procédures existantes, fiches techniques et interviews, puis mis à jour à chaque changement.',
+    gain: 'Autonomie du salarié atteinte 2 fois plus vite',
+    delai: 'Moyen terme', fiches: [28], score: 5, segs: null
+  },
+
+  // ---------- Production ----------
+  'planning-atelier': {
+    cat: 'prod', icon: '📅', label: 'Planifier ma charge atelier',
+    titre: 'Anticiper la charge de l\'atelier',
+    detail: 'Les commandes en cours et les heures planifiées sont consolidées pour calculer la charge prévisionnelle par semaine, dans un planning mis à jour en temps réel.',
+    gain: 'Évite la sur-vente, réduit les heures supplémentaires imprévues',
+    delai: 'Moyen terme', fiches: [15], score: 7, segs: null
+  },
+  'avancement': {
+    cat: 'prod', icon: '⚙️', label: 'Suivre l\'avancement des pièces, les retards et les non-conformités',
+    titre: 'Suivi d\'avancement atelier en temps réel, avec alertes de retard',
+    detail: 'L\'opérateur signale l\'avancement ou une non-conformité en 30 secondes sur mobile, et un tableau de bord vous alerte avant qu\'un retard n\'arrive.',
+    gain: 'Alertes 3 à 5 jours avant le retard, traçabilité complète',
+    delai: 'Rapide à moyen terme', fiches: [19, 20], score: 8, segs: null
+  },
+  'documents-fabrication': {
+    cat: 'prod', icon: '📄', label: 'Préparer les fiches techniques, dossiers de fabrication et rapports qualité',
+    titre: 'Documents de fabrication et de contrôle générés automatiquement',
+    detail: 'Fiches techniques, dossiers de fabrication filtrés par poste et rapports de contrôle qualité sont générés à partir d\'un simple formulaire : il ne reste qu\'à valider.',
+    gain: '1 à 2 h économisées par fiche, 45 minutes par lot contrôlé, zéro dossier papier',
+    delai: 'Rapide à structurant', fiches: [22, 23, 26], score: 7, segs: null
+  },
+  'fichiers-pieces': {
+    cat: 'prod', icon: '🔧', label: 'Vérifier les fichiers de commande et trier les pièces après la découpe',
+    titre: 'Contrôle des fichiers DXF/STEP et tri des pièces après découpe',
+    detail: 'Les fichiers du client sont comparés automatiquement à ceux du devis, et une interface visuelle surligne les pièces de chaque commande après la découpe.',
+    gain: 'Zéro fabrication sur un fichier erroné, tri 2 à 3 fois plus rapide',
+    delai: 'Moyen terme', fiches: [24, 25], score: 7, segs: ['laser-pliage', 'tolerie', 'autre']
+  },
+  'controle-camera': {
+    cat: 'prod', icon: '📷', label: 'Contrôler visuellement la qualité des pièces',
+    titre: 'Contrôle qualité automatique par caméra',
+    detail: 'Une caméra en sortie de machine analyse chaque pièce par vision artificielle et alerte l\'opérateur dès qu\'une anomalie est détectée.',
+    gain: 'Non-conformités chez le client réduites de 50 à 80 %',
+    delai: 'Structurant', fiches: [27], score: 5, segs: null
+  },
+  'stocks': {
+    cat: 'prod', icon: '📦', label: 'Gérer mes stocks et consulter mes fournisseurs',
+    titre: 'Alertes de stock et demandes de prix aux fournisseurs',
+    detail: 'Les niveaux de stock sont surveillés chaque jour : alerte dès qu\'un seuil est atteint, demande de prix préparée pour vos fournisseurs habituels après votre validation.',
+    gain: '2 à 3 h par semaine économisées, plus de rupture de matière imprévue',
+    delai: 'Moyen terme', fiches: [36], score: 7, segs: null
+  },
+
+  // ---------- Marketing ----------
+  'contenu': {
+    cat: 'marketing', icon: '📱', label: 'Créer du contenu : articles de blog et réseaux sociaux',
+    titre: 'Articles de blog et publications générés pour validation',
+    detail: 'Un article optimisé pour le référencement et un lot de publications adaptées à chaque réseau sont générés chaque semaine, puis proposés pour relecture avant publication.',
+    gain: 'Trafic organique croissant, 3 à 5 publications par semaine sans charge de travail',
+    delai: 'Rapide', fiches: [30, 31], score: 6, segs: null
+  },
+  'site-web': {
+    cat: 'marketing', icon: '🌐', label: 'Attirer des clients grâce à mon site internet',
+    titre: 'Site qui génère des demandes de devis et audit SEO/GEO',
+    detail: 'Un audit automatique note votre site sur 100 (Google et IA génératives) avec les points à corriger, et un site optimisé reçoit des demandes de devis routées vers le bon interlocuteur.',
+    gain: 'Une note claire sur l\'état du site, des demandes de devis entrantes sans prospection active',
+    delai: 'Rapide à moyen terme', fiches: [32, 33], score: 6, segs: null
   }
+};
+
+// Priorité d'affichage selon l'activité : sert uniquement à départager le top 3 du rapport, pas au score.
+const BOOST = {
+  'machines-speciales': ['demandes-devis', 'stocks', 'documents-fabrication', 'historique-client'],
+  'usinage':            ['demandes-devis', 'avancement', 'documents-fabrication'],
+  'laser-pliage':       ['fichiers-pieces', 'avancement', 'relance-devis'],
+  'tolerie':            ['relance-devis', 'clients-suivi', 'avancement'],
+  'soudure':            ['documents-fabrication', 'avancement'],
+  'traitement':         ['avancement', 'documents-fabrication'],
+  'autre':              []
 };
 
 // ============================================================
@@ -848,10 +826,15 @@ const TASKS = {
 let currentStep = 0;
 const answers = { q1: null, q2: null, q3: [], q4: null, q5: [], contact: {} };
 
+function esc(s) {
+  return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+}
+
 // ============================================================
 //  NAVIGATION
 // ============================================================
 function showStep(n) {
+  if (n === 3) renderTasks();
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
 
   let el;
@@ -885,6 +868,34 @@ function nextStep() {
 
 function prevStep() {
   if (currentStep > 0) { currentStep--; showStep(currentStep); }
+}
+
+// ============================================================
+//  AFFICHAGE DES TÂCHES SELON L'ACTIVITÉ (question 3)
+// ============================================================
+function tasksForSegment(seg) {
+  return Object.keys(TASKS).filter(k => !TASKS[k].segs || TASKS[k].segs.includes(seg));
+}
+
+function renderTasks() {
+  const visible = tasksForSegment(answers.q1);
+  // une tâche cochée puis masquée par un changement d'activité est retirée
+  answers.q3 = answers.q3.filter(k => visible.includes(k));
+
+  const html = CATEGORIES.map(cat => {
+    const keys = visible.filter(k => TASKS[k].cat === cat.key);
+    if (!keys.length) return '';
+    return `<div class="task-category-header">${cat.label}</div>` + keys.map(k => `
+      <div class="option-card checkbox${answers.q3.includes(k) ? ' selected' : ''}" data-value="${k}" onclick="toggleOption('q3', this)">
+        <div class="option-icon">${TASKS[k].icon}</div>
+        <div class="option-text"><div class="option-label">${esc(TASKS[k].label)}</div></div>
+        <div class="option-check"></div>
+      </div>`).join('');
+  }).join('');
+
+  document.getElementById('q3-options').innerHTML = html;
+  const btn = document.getElementById('btn-q3');
+  if (btn) btn.disabled = answers.q3.length === 0;
 }
 
 // ============================================================
@@ -940,6 +951,7 @@ async function submitAndShowReport() {
 
   // Envoi au webhook n8n (non bloquant)
   if (WEBHOOK_URL) {
+    const top = getTopTasks();
     const payload = {
       source:    'audit-express-metalboost',
       timestamp: new Date().toISOString(),
@@ -952,7 +964,10 @@ async function submitAndShowReport() {
         outils:          answers.q5
       },
       score:     calculateScore(),
-      topTaches: getTopTasks().map(t => t.label)
+      topTaches: top.map(t => t.titre),
+      topTachesDetail: top.map(t => ({
+        titre: t.titre, detail: t.detail, gain: t.gain, delai: t.delai, fiches: t.fiches
+      }))
     };
     fetch(WEBHOOK_URL, {
       method: 'POST',
@@ -967,30 +982,28 @@ async function submitAndShowReport() {
 }
 
 // ============================================================
-//  CALCUL DU SCORE
+//  CALCUL DU SCORE (sur 100)
+//  Tâches : 5 points par tâche cochée, 30 max.
+//  Temps perdu par semaine : 10 / 20 / 30 / 40 points.
+//  Outils : plus le processus est manuel, plus le potentiel est élevé, 30 max.
 // ============================================================
 function calculateScore() {
-  let score = 0;
+  const tasksPts = Math.min(answers.q3.length * 5, 30);
 
-  // Tâches sélectionnées (max 45 pts)
-  const taskTotal = answers.q3.reduce((sum, t) => sum + (TASKS[t]?.score || 5), 0);
-  score += Math.min(taskTotal * 3, 45);
+  const timePts = { lt5: 10, '5-10': 20, '10-20': 30, gt20: 40 }[answers.q4] || 20;
 
-  // Temps passé (max 35 pts)
-  const timeBonus = { lt5: 10, '5-10': 20, '10-20': 30, gt20: 35 };
-  score += timeBonus[answers.q4] || 15;
+  const toolPts = { excel: 8, email: 8, papier: 12, aucun: 12, erp: 0, 'logiciel-metier': 0 };
+  const toolsTotal = answers.q5.reduce((sum, t) => sum + (toolPts[t] || 0), 0);
 
-  // Outils primitifs = plus de potentiel (max 20 pts)
-  const primitive = answers.q5.filter(t => ['excel','email','papier','aucun'].includes(t)).length;
-  score += Math.min(primitive * 5, 20);
-
-  return Math.min(Math.round(score), 100);
+  return Math.min(Math.round(tasksPts + timePts + Math.min(toolsTotal, 30)), 100);
 }
 
 function getTopTasks() {
+  const boosted = BOOST[answers.q1] || [];
   return answers.q3
-    .map(t => ({ key: t, ...TASKS[t] }))
-    .sort((a, b) => b.score - a.score)
+    .filter(k => TASKS[k])
+    .map(k => ({ key: k, ...TASKS[k], rank: TASKS[k].score + (boosted.includes(k) ? 1.5 : 0) }))
+    .sort((a, b) => b.rank - a.rank)
     .slice(0, 3);
 }
 
@@ -1020,27 +1033,24 @@ function generateReport() {
   const score    = calculateScore();
   const topTasks = getTopTasks();
   const info     = getScoreInfo(score);
-  const prenom   = answers.contact.name.split(' ')[0];
-
-  const savMin = topTasks.reduce((s, t) => s + (t.savingMin || 2), 0);
-  const savMax = topTasks.reduce((s, t) => s + (t.savingMax || 4), 0);
-  const savingsText = topTasks.length ? `${savMin} à ${savMax}h récupérables par semaine` : 'Potentiel identifié';
+  const prenom   = esc(answers.contact.name.split(' ')[0]);
 
   const tasksHTML = topTasks.map((task, i) => `
     <div class="task-card">
       <div class="task-rank">${i + 1}</div>
       <div>
-        <div class="task-name">${task.label}</div>
-        <div class="task-detail">${task.detail}</div>
-        <span class="tag tag-green">⏱ ${task.saving}</span>
-        <span class="tag tag-gray">🛠 ${task.tool}</span>
+        <div class="task-name">${esc(task.titre)}</div>
+        <div class="task-detail">${esc(task.detail)}</div>
+        <div class="task-gain">✓ ${esc(task.gain)}</div>
+        <span class="tag tag-gray">🛠 Mise en place : ${esc(task.delai)}</span>
+        <span class="tag tag-gray">📄 ${task.fiches.length > 1 ? 'Automatisations' : 'Automatisation'} n° ${task.fiches.join(', ')} sur nos 36</span>
       </div>
     </div>
   `).join('');
 
   document.getElementById('step-report').innerHTML = `
     <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">
-      Rapport personnalisé pour <strong>${prenom}</strong> &mdash; ${answers.contact.company}
+      Rapport personnalisé pour <strong>${prenom}</strong> &mdash; ${esc(answers.contact.company)}
     </p>
 
     <div class="report-header">
@@ -1050,12 +1060,13 @@ function generateReport() {
       </div>
       <div class="score-title">Potentiel d'automatisation : <span style="color:var(--orange)">${info.label}</span></div>
       <div class="score-desc">${info.desc}</div>
-      ${topTasks.length ? `<div class="savings-badge">Estimation : <strong>${savingsText}</strong></div>` : ''}
+      ${topTasks.length ? `<div class="savings-badge"><strong>${topTasks.length} piste${topTasks.length > 1 ? 's' : ''} prioritaire${topTasks.length > 1 ? 's' : ''}</strong> identifiée${topTasks.length > 1 ? 's' : ''} pour votre activité</div>` : ''}
     </div>
 
     ${topTasks.length ? `
       <div class="section-title">🎯 Vos priorités d'automatisation</div>
       ${tasksHTML}
+      <p style="font-size:12px;color:var(--text-muted);margin:4px 0 0">Les gains indiqués sont des ordres de grandeur observés ou estimés, à confirmer lors d'un échange sur votre situation réelle.</p>
     ` : ''}
 
     <div class="cta-section">
@@ -1065,7 +1076,7 @@ function generateReport() {
         📞 Réservez votre échange gratuit de 30 minutes
       </a>
       <p style="font-size:13px;color:var(--text-muted);margin-top:16px">
-        Votre rapport vous sera également envoyé à <strong>${answers.contact.email}</strong>
+        Votre rapport vous sera également envoyé à <strong>${esc(answers.contact.email)}</strong>
       </p>
       <a href="https://metalboost-ia.fr" style="display:inline-block;margin-top:16px;color:var(--text-muted);font-size:14px;text-decoration:none;border:1px solid var(--border);border-radius:8px;padding:10px 20px;transition:color 0.2s,border-color 0.2s" onmouseover="this.style.color='#f8fafc';this.style.borderColor='#64748b'" onmouseout="this.style.color='';this.style.borderColor=''">
         ← Retour à l'accueil
