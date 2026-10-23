@@ -13,8 +13,40 @@
       "destination": "/blog/:slug/index.html"
     },
     {
+      "source": "/offres",
+      "destination": "/offres/index.html"
+    },
+    {
+      "source": "/ia-automatisation",
+      "destination": "/ia-automatisation/index.html"
+    },
+    {
+      "source": "/marketing-digital",
+      "destination": "/marketing-digital/index.html"
+    },
+    {
+      "source": "/methodologie",
+      "destination": "/methodologie/index.html"
+    },
+    {
+      "source": "/a-propos",
+      "destination": "/a-propos/index.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact/index.html"
+    },
+    {
+      "source": "/mentions-legales",
+      "destination": "/mentions-legales/index.html"
+    },
+    {
+      "source": "/politique-confidentialite",
+      "destination": "/politique-confidentialite/index.html"
+    },
+    {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/spa.html"
     }
   ]
 }
