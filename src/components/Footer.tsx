@@ -51,16 +51,23 @@ const Footer = () => {
               name: "Accueil",
               href: "/"
             }, {
+              name: "Blog",
+              href: "/blog",
+              external: true
+            }, {
               name: "À propos",
               href: "/a-propos"
             }, {
               name: "Contact",
               href: "/contact"
             }].map(item => <li key={item.name}>
-                  <Link to={item.href} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm flex items-center gap-2 group">
+                  {"external" in item ? <a href={item.href} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm flex items-center gap-2 group">
                     <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <span>{item.name}</span>
-                  </Link>
+                  </a> : <Link to={item.href} className="text-primary-foreground/70 hover:text-primary-foreground transition-colors text-sm flex items-center gap-2 group">
+                    <ArrowRight className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <span>{item.name}</span>
+                  </Link>}
                 </li>)}
             </ul>
           </div>

@@ -50,4 +50,20 @@
     <priority>0.5</priority>
   </url>
 
+<!-- blog:start -->
+  <url>
+    <loc>https://metalboost-ia.fr/blog</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://metalboost-ia.fr/blog/relance-devis-automatique-tolerie-chronopli</loc>
+    <lastmod>2026-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+<!-- blog:end -->
+
 </urlset>
