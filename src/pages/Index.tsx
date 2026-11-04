@@ -3,6 +3,22 @@ import { Button } from "@/components/ui/button";
 import Layout from "@/components/Layout";
 import { ArrowRight, Target, Zap, TrendingUp, Clock, Shield, CheckCircle2, Factory, Cog, BarChart3, Users } from "lucide-react";
 import heroImage from "@/assets/hero-workshop.jpg";
+
+// Articles du blog statique (content/blog/<slug>/meta.json, générés par `npm run blog`)
+interface BlogMeta {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  cover?: string;
+  coverAlt?: string;
+  readingMinutes?: number;
+}
+const latestPosts = Object.values(import.meta.glob("../../content/blog/*/meta.json", { eager: true, import: "default" }) as Record<string, BlogMeta>)
+  .sort((a, b) => b.date.localeCompare(a.date))
+  .slice(0, 3);
+const formatDate = (iso: string) =>
+  new Date(iso + "T12:00:00").toLocaleDateString("fr-FR", { day: "numeric", month: "long", year: "numeric" });
 const stats = [{
   value: "30%",
   label: "Réduction du temps de chiffrage"
@@ -266,6 +282,49 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Derniers articles du blog */}
+      {latestPosts.length > 0 && (
+        <section className="py-16 lg:py-24">
+          <div className="container-industrial">
+            <div className="text-center mb-12">
+              <span className="badge-industrial mb-4">Blog</span>
+              <h2 className="section-title">Derniers articles</h2>
+              <p className="section-subtitle mx-auto">
+                Conseils concrets sur l'IA et l'automatisation pour les ateliers de métallerie.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
+              {latestPosts.map((post) => (
+                <a key={post.slug} href={`/blog/${post.slug}`} className="card-industrial group hover:-translate-y-1">
+                  {post.cover && (
+                    <img
+                      src={post.cover}
+                      alt={post.coverAlt || ""}
+                      loading="lazy"
+                      className="w-full h-44 object-cover rounded-lg mb-4"
+                    />
+                  )}
+                  <p className="text-sm text-muted-foreground mb-2">
+                    {formatDate(post.date)}
+                    {post.readingMinutes ? ` · ${post.readingMinutes} min de lecture` : ""}
+                  </p>
+                  <h3 className="text-lg font-semibold text-primary mb-2">{post.title}</h3>
+                  <span className="inline-flex items-center text-secondary font-medium group-hover:gap-2 transition-all">
+                    Lire l'article
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </span>
+                </a>
+              ))}
+            </div>
+            <div className="text-center mt-10">
+              <Button variant="outline" size="lg" asChild>
+                <a href="/blog">Voir tous les articles</a>
+              </Button>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* CTA Section */}
       <section className="py-16 lg:py-24 bg-primary">
